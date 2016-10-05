@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main menu-->
+        <!--New game-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MultiPlayer_Memory" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,19 +19,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZW-ab-mal">
-                                <state key="normal" title="Create game"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZW-ab-mal">
+                                <frame key="frameInset" minX="271" minY="617" width="88" height="30"/>
+                                <state key="normal" title="Play"/>
                                 <connections>
                                     <segue destination="g7N-sa-5EX" kind="show" id="hxg-2P-MWY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxB-JK-Opk">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxB-JK-Opk">
+                                <frame key="frameInset" minX="302" minY="72" width="57" height="30"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
                                     <segue destination="bhE-GB-tpM" kind="show" id="Z9o-Ab-FE1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClT-gS-xJV">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClT-gS-xJV">
+                                <frame key="frameInset" minX="16" minY="72" width="74" height="30"/>
                                 <state key="normal" title="High score"/>
                                 <connections>
                                     <segue destination="VBy-FN-4dy" kind="show" id="4dW-Cg-ddI"/>
@@ -49,7 +52,7 @@
                             <constraint firstItem="ClT-gS-xJV" firstAttribute="top" secondItem="gxB-JK-Opk" secondAttribute="bottom" constant="45" id="x1f-yH-HTo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main menu" id="Rdh-gV-9bF"/>
+                    <navigationItem key="navigationItem" title="New game" id="Rdh-gV-9bF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +86,6 @@
         <!--Settings-->
         <scene sceneID="TZe-60-ujx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="see-pf-eLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bhE-GB-tpM" customClass="SettingsViewController" customModule="MultiPlayer_Memory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="59Z-47-cwV"/>
@@ -104,11 +106,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ocD-Id-zbq" id="but-zl-1Xy">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64m-SH-zG7">
-                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
+                                                    <frame key="frameInset" minX="15" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -122,6 +124,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bhE-GB-tpM" id="86x-b7-Kp6"/>
+                                    <outlet property="delegate" destination="bhE-GB-tpM" id="OMK-wE-Bcg"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,6 +144,7 @@
                         <outlet property="tableView" destination="cyO-N1-bD7" id="KJt-b7-kSj"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="see-pf-eLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2292" y="242.42878560719643"/>
         </scene>
