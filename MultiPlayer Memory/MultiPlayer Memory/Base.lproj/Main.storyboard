@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,40 +20,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZW-ab-mal">
-                                <frame key="frameInset" minX="271" minY="617" width="88" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZW-ab-mal">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pZW-ab-mal" secondAttribute="height" multiplier="44:15" id="MXN-ch-Qf4"/>
+                                </constraints>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <segue destination="g7N-sa-5EX" kind="show" id="hxg-2P-MWY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxB-JK-Opk">
-                                <frame key="frameInset" minX="302" minY="72" width="57" height="30"/>
-                                <state key="normal" title="Settings"/>
-                                <connections>
-                                    <segue destination="bhE-GB-tpM" kind="show" id="Z9o-Ab-FE1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClT-gS-xJV">
-                                <frame key="frameInset" minX="16" minY="72" width="74" height="30"/>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pZW-ab-mal" secondAttribute="trailing" id="iFj-23-JMY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pZW-ab-mal" secondAttribute="bottom" constant="20" id="r4P-KE-rPQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New game" id="Rdh-gV-9bF">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="bUV-eV-cxf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClT-gS-xJV">
+                                <rect key="frame" x="16" y="7" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="High score"/>
                                 <connections>
                                     <segue destination="VBy-FN-4dy" kind="show" id="4dW-Cg-ddI"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="pZW-ab-mal" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9e9-wR-xap"/>
-                            <constraint firstItem="pZW-ab-mal" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="DHa-At-o8E"/>
-                            <constraint firstItem="gxB-JK-Opk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FO3-XO-kPA"/>
-                            <constraint firstItem="pZW-ab-mal" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="88:667" id="Xme-Vf-Cju"/>
-                            <constraint firstItem="ClT-gS-xJV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j40-Bk-dCl"/>
-                            <constraint firstItem="gxB-JK-Opk" firstAttribute="top" secondItem="pZW-ab-mal" secondAttribute="bottom" constant="45" id="vjv-pj-CcF"/>
-                            <constraint firstItem="ClT-gS-xJV" firstAttribute="top" secondItem="gxB-JK-Opk" secondAttribute="bottom" constant="45" id="x1f-yH-HTo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="New game" id="Rdh-gV-9bF"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2Pn-ZS-fgm">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gxB-JK-Opk">
+                                <rect key="frame" x="302" y="7" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="bhE-GB-tpM" kind="show" id="Z9o-Ab-FE1"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,11 +111,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ocD-Id-zbq" id="but-zl-1Xy">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64m-SH-zG7">
-                                                    <frame key="frameInset" minX="15" width="345" height="43.5"/>
+                                                    <frame key="frameInset" minX="15" width="345" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
