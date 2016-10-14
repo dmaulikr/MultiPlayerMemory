@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
 
     @IBOutlet weak var myImageView: UIImageView!
     let picker = UIImagePickerController()
@@ -16,6 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var multiplayerToggle: UISwitch!
     @IBOutlet weak var largeModeToggle: UISwitch!
     
+    @IBOutlet weak var gridLayout: UICollectionView!
     @IBOutlet weak var stateTest: UILabel! //TESTLABEL, ta bort sen!
     
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
@@ -92,18 +93,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
     }
     
+    let reuseIdentifier = "cell"
+    var memoryBricks: [UIImage] = []
+    
     //MARK: - Delegates
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        /* 2 lines below can be removed? */
         myImageView.contentMode = .scaleAspectFit
         myImageView.image = chosenImage
+        
         selectedPhotos.isHidden = false
         dismiss(animated:true, completion: nil)
         
+        memoryBricks.append(chosenImage)
+        /* här nedan tänkte jag att collection viewn ska uppdateras eftersom det är här varje ny bild slängs in i arrayn */
+        self.gridLayout.reloadData()
+        
+        print(memoryBricks) //printar arrayn i consolen för debugging
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
+    // make a cell for each cell index path
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = gridLayout.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
+        
+        cell.brick = self.memoryBricks[indexPath.item]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.memoryBricks.count
+    }
+    
 
 }
 

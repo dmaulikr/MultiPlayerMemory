@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F5B9F971DB1170500B26FBB /* myCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B9F961DB1170500B26FBB /* myCollectionViewCell.swift */; };
 		F98EDD101DA2630A00313A6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */; };
 		F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98EDD111DA2630A00313A6F /* ViewController.swift */; };
 		F98EDD151DA2630A00313A6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98EDD131DA2630A00313A6F /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F5B9F961DB1170500B26FBB /* myCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myCollectionViewCell.swift; sourceTree = "<group>"; };
 		F98EDD0C1DA2630A00313A6F /* MultiPlayer Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MultiPlayer Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F98EDD111DA2630A00313A6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */,
 				F98EDD111DA2630A00313A6F /* ViewController.swift */,
 				F98EDD131DA2630A00313A6F /* Main.storyboard */,
+				1F5B9F961DB1170500B26FBB /* myCollectionViewCell.swift */,
 				F98EDD161DA2630A00313A6F /* Assets.xcassets */,
 				F98EDD181DA2630A00313A6F /* LaunchScreen.storyboard */,
 				F98EDD1B1DA2630A00313A6F /* Info.plist */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5B9F971DB1170500B26FBB /* myCollectionViewCell.swift in Sources */,
 				F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */,
 				F98EDD101DA2630A00313A6F /* AppDelegate.swift in Sources */,
 			);
