@@ -1,5 +1,5 @@
 //
-//  myCollectionViewCell.swift
+//  MyCollectionViewCell.swift
 //  MultiPlayer Memory
 //
 //  Created by Fredrik Holmdahl on 2016-10-14.
@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 class MyCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var brick: UIImage!
+    @IBOutlet weak var brick: UIImageView!
 
 }

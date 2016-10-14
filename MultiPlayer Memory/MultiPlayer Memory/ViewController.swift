@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
-
-    @IBOutlet weak var myImageView: UIImageView!
+    
+    var items: [String] = ["1","2","3","4","5"]
+    let reuseIdentifier = "cell"
+    var memoryBricks: [UIImage] = []
     let picker = UIImagePickerController()
+    @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var selectedPhotos: UILabel!
     @IBOutlet weak var multiplayerToggle: UISwitch!
     @IBOutlet weak var largeModeToggle: UISwitch!
@@ -93,9 +96,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
     }
     
-    let reuseIdentifier = "cell"
-    var memoryBricks: [UIImage] = []
-    
     //MARK: - Delegates
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -109,7 +109,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         memoryBricks.append(chosenImage)
         /* här nedan tänkte jag att collection viewn ska uppdateras eftersom det är här varje ny bild slängs in i arrayn */
+
         self.gridLayout.reloadData()
+        
         
         print(memoryBricks) //printar arrayn i consolen för debugging
     }
@@ -123,8 +125,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // get a reference to our storyboard cell
         let cell = gridLayout.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
         
-        cell.brick = self.memoryBricks[indexPath.item]
-        
+        cell.brick.image = self.memoryBricks[indexPath.item]
+        print("indexPath: ", indexPath)
+        print(cell)
         return cell
     }
     
