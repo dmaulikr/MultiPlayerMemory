@@ -13,9 +13,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var myImageView: UIImageView!
     let picker = UIImagePickerController()
     @IBOutlet weak var selectedPhotos: UILabel!
+    @IBOutlet weak var multiplayerToggle: UISwitch!
+    @IBOutlet weak var largeModeToggle: UISwitch!
     
-    @IBAction func playGame(_ sender: UIBarButtonItem) {
+    @IBOutlet weak var stateTest: UILabel! //TESTLABEL, ta bort sen!
+    
+    @IBAction func multiplayerToggle(_ sender: UISwitch) {
+        multiplayerToggle = sender
+        
+        /* Testkod för att se att multiplayerToggle sparar rätt värde, ta bort sen */
+        if multiplayerToggle.isOn{
+            stateTest.text = "ON"
+        }
+        else{
+            stateTest.text = "OFF"
+        }
     }
+    @IBAction func largeModeToggle(_ sender: UISwitch) {
+        largeModeToggle = sender
+    }
+    /* GET:er för multiplayerToggle */
+    func getMPState() -> UISwitch {
+        return multiplayerToggle
+    }
+    /* GET:er för largeModeToggle */
+    func getLMState() -> UISwitch {
+        return largeModeToggle
+    }
+    
+    
+    
+    
+
     @IBAction func photoFromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
