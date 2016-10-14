@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
     
-    var items: [String] = ["1","2","3","4","5"]
+    
+    @IBOutlet weak var clearImages: UIButton!
     let reuseIdentifier = "cell"
     var memoryBricks: [UIImage] = []
     let picker = UIImagePickerController()
@@ -18,36 +19,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var selectedPhotos: UILabel!
     @IBOutlet weak var multiplayerToggle: UISwitch!
     @IBOutlet weak var largeModeToggle: UISwitch!
-    
     @IBOutlet weak var gridLayout: UICollectionView!
-    @IBOutlet weak var stateTest: UILabel! //TESTLABEL, ta bort sen!
     
+    @IBAction func clearImages(_ sender: UIButton) {
+        self.memoryBricks.removeAll()
+        gridLayout.reloadData()
+    }
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
         multiplayerToggle = sender
-        
-        /* Testkod för att se att multiplayerToggle sparar rätt värde, ta bort sen */
-        if multiplayerToggle.isOn{
-            stateTest.text = "ON"
-        }
-        else{
-            stateTest.text = "OFF"
-        }
     }
     @IBAction func largeModeToggle(_ sender: UISwitch) {
         largeModeToggle = sender
     }
-    /* GET:er för multiplayerToggle */
+    /* Get:er for multiplayerToggle */
     func getMPState() -> UISwitch {
         return multiplayerToggle
     }
-    /* GET:er för largeModeToggle */
+    /* Get:er for largeModeToggle */
     func getLMState() -> UISwitch {
         return largeModeToggle
     }
-    
-    
-    
-    
 
     @IBAction func photoFromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
@@ -100,20 +91,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        /* 2 lines below can be removed? */
-        myImageView.contentMode = .scaleAspectFit
-        myImageView.image = chosenImage
+        /* 2 lines below can be removed, used prev. for setting the image to the last photo taken */
+        //myImageView.contentMode = .scaleAspectFit
+        //myImageView.image = chosenImage
         
         selectedPhotos.isHidden = false
+        clearImages.isHidden = false
         dismiss(animated:true, completion: nil)
         
         memoryBricks.append(chosenImage)
-        /* här nedan tänkte jag att collection viewn ska uppdateras eftersom det är här varje ny bild slängs in i arrayn */
-
         self.gridLayout.reloadData()
         
-        
-        print(memoryBricks) //printar arrayn i consolen för debugging
+        print(memoryBricks) //prints the array in the consolen for debugging
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
