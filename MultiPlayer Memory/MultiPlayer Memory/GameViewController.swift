@@ -12,6 +12,11 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var p1view: UIView!
+    @IBOutlet weak var p2view: UIView!
+    
+    
+    @IBOutlet weak var p1PointsLabel: UILabel!
     @IBOutlet weak var p1Label: UILabel!
     @IBOutlet weak var p1Points: UILabel!
     @IBOutlet weak var p2Points: UILabel!
@@ -22,8 +27,8 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     var players : Int = 1
-    var player1 : Player = Player(id: 1, turn: true)
-    var player2 : Player = Player(id: 2, turn: false)
+    var player1 : Player = Player()
+    var player2 : Player = Player()
     
     var brickImages : [UIImage] = []
     
@@ -60,8 +65,10 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         
-        if let label = p1Label {
-            label.backgroundColor = UIColor.blue
+        if let view = p1view {
+            view.backgroundColor = UIColor.orange
+            player1 = Player(id: 1, turn: true, view: p1view, pLabel: p1Label, pointLabel: p1PointsLabel, pointValLabel: p1Points)
+            player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
         }
         
     }
@@ -137,13 +144,25 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             break
         case 5:
-            cell.color = UIColor.magenta
+            if brickImages.count > 5 {
+                cell.imageView.image = brickImages[5]
+            } else {
+                cell.color = UIColor.magenta
+            }
             break
         case 6:
-            cell.color = UIColor.yellow
+            if brickImages.count > 6 {
+                cell.imageView.image = brickImages[6]
+            } else {
+                cell.color = UIColor.yellow
+            }
             break
         case 7:
-            cell.color = UIColor.gray
+            if brickImages.count > 7 {
+                cell.imageView.image = brickImages[7]
+            } else {
+                cell.color = UIColor.gray
+            }
             break
         default: break
         }
@@ -199,19 +218,17 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         openBricks[brick.brickMatchId] = true
                         if player1.isTurn() {
                             player1.addPoint()
-                            p1Points.text = "\(player1.points)"
                         } else if player2.isTurn() {
                             player2.addPoint()
-                            p2Points.text = "\(player2.points)"
                         }
                         
-                        var b = true
+                        var bricksLeft = true
                         for index in 0...15 {
                             if !openBricks[index] {
-                                b = false
+                                bricksLeft = false
                             }
                         }
-                        if b {
+                        if bricksLeft {
                             var winner : String
                             let alertMessage = "Game is finished"
                             if player1.points > player2.points {
@@ -233,13 +250,6 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         closeBricksIndex.append(brick.brickMatchId)
                         turnsVal += 1
                         turnsLabel.text = "\(turnsVal)"
-                        if player1.isTurn() {
-                            p1Label.backgroundColor = UIColor.white
-                            p2Label.backgroundColor = UIColor.blue
-                        } else {
-                            p1Label.backgroundColor = UIColor.blue
-                            p2Label.backgroundColor = UIColor.white
-                        }
                         player1.changeTurn()
                         player2.changeTurn()
                     }
