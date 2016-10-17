@@ -11,6 +11,8 @@ import UIKit
 class Brick: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    
     var color : UIColor?
     var open : Bool = false
     var id : Int = 0
@@ -19,9 +21,16 @@ class Brick: UICollectionViewCell {
     
     public func click() {
         if !self.isOpen() {
-            open = true
-            backgroundColor = color
+            self.imageView.isHidden = false
+            self.open = true
+            self.backgroundColor = color
         }
+    }
+    
+    public func close() {
+        self.open = false
+        self.backgroundColor = UIColor.black
+        self.imageView.isHidden = true
     }
     
     public func isOpen() -> Bool {
@@ -29,7 +38,7 @@ class Brick: UICollectionViewCell {
     }
     
     public func isMatch() {
-        self.backgroundColor = UIColor.white
+        self.isHighlighted = true
         self.isUserInteractionEnabled = false
     }
 }

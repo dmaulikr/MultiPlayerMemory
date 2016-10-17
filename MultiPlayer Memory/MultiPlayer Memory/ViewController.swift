@@ -91,6 +91,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if segue.identifier == "play" {
             let controller = segue.destination as! GameViewController
             controller.difficulty = Difficulty.Easy
+            controller.brickImages = memoryBricks
+            if multiplayerToggle.isOn {
+                controller.players = 2
+            }
         }
     }
     
@@ -109,7 +113,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         memoryBricks.append(chosenImage)
         self.gridLayout.reloadData()
         
-        print(memoryBricks) //prints the array in the consolen for debugging
+        print("DEBUG: \(memoryBricks)") //prints the array in the console for debugging
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -119,11 +123,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // get a reference to our storyboard cell
-        let cell = gridLayout.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! Brick
+        let cell = gridLayout.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
         
-        cell.imageView.image = self.memoryBricks[indexPath.item]
+        cell.img = self.memoryBricks[indexPath.item]
         print("indexPath: ", indexPath)
-        print(cell)
         return cell
     }
     

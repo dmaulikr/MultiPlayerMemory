@@ -12,14 +12,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var turnsLabel: UILabel!
-    @IBOutlet weak var diffLabel: UILabel!
+    @IBOutlet weak var p1Label: UILabel!
+    @IBOutlet weak var p1Points: UILabel!
+    @IBOutlet weak var p2Points: UILabel!
+    @IBOutlet weak var p2PointsLabel: UILabel!
+    @IBOutlet weak var p2Label: UILabel!
     
-    private var deck: Array<Int>? {
-        didSet{
-            self.configureView()
-        }
-    }
+    @IBOutlet weak var turnsLabel: UILabel!
+    
+    
+    var players : Int = 1
+    var player1 : Player = Player(id: 1, turn: true)
+    var player2 : Player = Player(id: 2, turn: false)
+    
+    var brickImages : [UIImage] = []
+    
     
     var difficulty: Difficulty? {
         didSet{
@@ -39,21 +46,24 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var bricks : [Brick] = []
     var openBricks : [Bool] = []
     var cellIdsArray : [Int] = []
+    var turnsVal = 0
     
     func configureView() {
         cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
         
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
-                if let label = diffLabel {
-                    label.text = "Easy"
-                    
-                }
+                //TODO: change size of board
             }
             else {
-                diffLabel.text = "Hard"
+                //TODO: change size of board
             }
         }
+        
+        if let label = p1Label {
+            label.backgroundColor = UIColor.blue
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -83,6 +93,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Brick
         
+        print(brickImages.count)
         // Configure the cell
         cell.backgroundColor = UIColor.black
         let randomValue = Int(arc4random_uniform(UInt32(cellIdsArray.count)))
@@ -91,19 +102,39 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         switch cell.id {
         case 0:
-            cell.color = UIColor.blue
+            if brickImages.count > 0 {
+                cell.imageView.image = brickImages[0]
+            } else {
+                cell.color = UIColor.blue
+            }
             break
         case 1:
-            cell.color = UIColor.brown
+            if brickImages.count > 1 {
+                cell.imageView.image = brickImages[1]
+            } else {
+                cell.color = UIColor.brown
+            }
             break
         case 2:
-            cell.color = UIColor.cyan
+            if brickImages.count > 2 {
+                cell.imageView.image = brickImages[2]
+            } else {
+                cell.color = UIColor.cyan
+            }
             break
         case 3:
-            cell.color = UIColor.green
+            if brickImages.count > 3 {
+                cell.imageView.image = brickImages[3]
+            } else {
+                cell.color = UIColor.green
+            }
             break
         case 4:
-            cell.color = UIColor.orange
+            if brickImages.count > 4 {
+                cell.imageView.image = brickImages[4]
+            } else {
+                cell.color = UIColor.orange
+            }
             break
         case 5:
             cell.color = UIColor.magenta
@@ -125,7 +156,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         cell.brickMatchId = cellMatchId
         cellMatchId += 1
-        
+        cell.imageView.isHidden = true
         bricks.append(cell)
         openBricks.append(false)
         
@@ -141,14 +172,13 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if closeBricks {
             closeBricks = false
-            bricks[closeBricksIndex[0]].backgroundColor = UIColor.black
-            bricks[closeBricksIndex[1]].backgroundColor = UIColor.black
-            bricks[closeBricksIndex[0]].open = false
-            bricks[closeBricksIndex[1]].open = false
+            bricks[closeBricksIndex[0]].close()
+            bricks[closeBricksIndex[1]].close()
             closeBricksIndex = []
         }
         
         brick.click()
+        
         
         
         print("print working")
@@ -167,12 +197,51 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         brick.isMatch()
                         openBricks[i] = true
                         openBricks[brick.brickMatchId] = true
+                        if player1.isTurn() {
+                            player1.addPoint()
+                            p1Points.text = "\(player1.points)"
+                        } else if player2.isTurn() {
+                            player2.addPoint()
+                            p2Points.text = "\(player2.points)"
+                        }
+                        
+                        var b = true
+                        for index in 0...15 {
+                            if !openBricks[index] {
+                                b = false
+                            }
+                        }
+                        if b {
+                            var winner : String
+                            let alertMessage = "Game is finished"
+                            if player1.points > player2.points {
+                                winner = "Player 1 wins!"
+                            } else if player2.points > player1.points {
+                                winner = "Player 2 wins!"
+                            } else {
+                                winner = "It's a draw!"
+                            }
+                            let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil))
+                            self.present(alert, animated: true, completion:{})
+                        }
                     }
                     else {
                         print("DEBUG: TWO UNMATCHING BRICKS")
                         closeBricks = true
                         closeBricksIndex.append(i)
                         closeBricksIndex.append(brick.brickMatchId)
+                        turnsVal += 1
+                        turnsLabel.text = "\(turnsVal)"
+                        if player1.isTurn() {
+                            p1Label.backgroundColor = UIColor.white
+                            p2Label.backgroundColor = UIColor.blue
+                        } else {
+                            p1Label.backgroundColor = UIColor.blue
+                            p2Label.backgroundColor = UIColor.white
+                        }
+                        player1.changeTurn()
+                        player2.changeTurn()
                     }
                 }
                 else {
