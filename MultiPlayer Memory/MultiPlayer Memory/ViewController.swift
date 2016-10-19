@@ -5,11 +5,19 @@
 //  Created by Magnus Huttu on 03/10/16.
 //  Copyright © 2016 Magnus Huttu. All rights reserved.
 //
+// Animation KLAR
+// Highscore
+// Färgtema
+// Bibliotek - bilder
+// Gps
 
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
     
+    @IBOutlet weak var playBtn: UIButton!
+    
+    @IBOutlet weak var highscoreBtn: UIButton!
     
     @IBOutlet weak var clearImages: UIButton!
     let reuseIdentifier = "cell"
@@ -81,6 +89,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        highscoreBtn.layer.cornerRadius = 3
+        highscoreBtn.layer.masksToBounds = true
+        
+        playBtn.layer.cornerRadius = 3
+        playBtn.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {

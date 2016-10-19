@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D28491DB803ED00DBD0D9 /* Highscore.swift */; };
+		B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */; };
+		B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */; };
 		B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */; };
 		B79DD0F01DB50A9300747339 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0EF1DB50A9300747339 /* Player.swift */; };
 		F956C1511DA7D4EA00988A0F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F956C1501DA7D4EA00988A0F /* GameViewController.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71D28491DB803ED00DBD0D9 /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
+		B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewCell.swift; sourceTree = "<group>"; };
+		B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B79DD0EF1DB50A9300747339 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F956C1501DA7D4EA00988A0F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -70,9 +76,12 @@
 				F98EDD111DA2630A00313A6F /* ViewController.swift */,
 				B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */,
 				B79DD0EF1DB50A9300747339 /* Player.swift */,
+				B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */,
+				B71D28491DB803ED00DBD0D9 /* Highscore.swift */,
 				F956C15E1DABB83D00988A0F /* MemoryCollectionView.swift */,
 				F956C15A1DAB8C9D00988A0F /* Brick.swift */,
 				F98EDD131DA2630A00313A6F /* Main.storyboard */,
+				B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */,
 				F98EDD161DA2630A00313A6F /* Assets.xcassets */,
 				F98EDD181DA2630A00313A6F /* LaunchScreen.storyboard */,
 				F98EDD1B1DA2630A00313A6F /* Info.plist */,
@@ -155,9 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */,
 				F956C1511DA7D4EA00988A0F /* GameViewController.swift in Sources */,
 				F956C15F1DABB83D00988A0F /* MemoryCollectionView.swift in Sources */,
 				B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */,
+				B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */,
+				B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */,
 				F956C15B1DAB8C9D00988A0F /* Brick.swift in Sources */,
 				B79DD0F01DB50A9300747339 /* Player.swift in Sources */,
 				F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */,

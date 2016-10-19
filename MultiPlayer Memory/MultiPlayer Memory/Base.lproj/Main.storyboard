@@ -16,18 +16,27 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o01-CE-8Jn">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o01-CE-8Jn">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZYm-xC-pVk"/>
-                                    <barButtonItem title="Play" id="F3h-d3-oSu">
-                                        <connections>
-                                            <segue destination="g7N-sa-5EX" kind="show" identifier="play" id="Via-qs-A16"/>
-                                        </connections>
+                                    <barButtonItem style="plain" id="30u-gs-i8F">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Q9m-Rr-wae">
+                                            <rect key="frame" x="319" y="7" width="40" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Play">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="g7N-sa-5EX" kind="show" identifier="play" id="SE3-Fd-uGo"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="1" green="0.55890883140000003" blue="0.00037984644719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNX-cp-9uo">
                                 <state key="normal" title="Take new photos"/>
@@ -189,24 +198,32 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rdh-gV-9bF">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="bUV-eV-cxf">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="bUV-eV-cxf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClT-gS-xJV">
-                                <rect key="frame" x="285" y="7" width="74" height="30"/>
+                                <rect key="frame" x="269" y="7" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="High score"/>
+                                <state key="normal" title="High score">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="VBy-FN-4dy" kind="show" id="4dW-Cg-ddI"/>
+                                    <segue destination="L3A-uD-XoN" kind="show" id="0Y7-b6-jyo"/>
                                 </connections>
                             </button>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <nil key="tintColor"/>
+                            </variation>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="clearImages" destination="cai-WD-1Qe" id="f0c-C0-mP6"/>
                         <outlet property="gridLayout" destination="zlY-vT-Fp1" id="BQi-eC-FrU"/>
+                        <outlet property="highscoreBtn" destination="ClT-gS-xJV" id="SZp-sm-RdU"/>
                         <outlet property="largeModeToggle" destination="jd5-kd-dPc" id="240-uP-h5L"/>
                         <outlet property="multiplayerToggle" destination="TPE-W9-rUR" id="3KS-TM-eZM"/>
                         <outlet property="myImageView" destination="nqL-He-n3M" id="Umk-Qo-3ny"/>
+                        <outlet property="playBtn" destination="Q9m-Rr-wae" id="dI6-eE-128"/>
                         <outlet property="selectedPhotos" destination="XCi-5C-H18" id="8ad-tf-mMu"/>
                     </connections>
                 </viewController>
@@ -223,32 +240,37 @@
                         <viewControllerLayoutGuide type="bottom" id="C2B-rt-5a2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZGc-I4-JaU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjX-kw-uhT">
                                 <frame key="frameInset" minY="20" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cov-P7-gTW">
+                                <frame key="frameInset" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o98-LY-zoZ">
-                                <frame key="frameInset" minY="64" width="130" height="70"/>
+                                <frame key="frameInset" minX="-36" minY="-20" width="165" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTN-fo-Q9i">
-                                <frame key="frameInset" minX="245" minY="64" width="130" height="70"/>
+                                <frame key="frameInset" minX="244" minY="-20" width="163" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbF-yf-wBE">
-                                <frame key="frameInset" minX="16" minY="72" width="59" height="21"/>
+                                <frame key="frameInset" minX="15" minY="12" width="59" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpG-WZ-XXQ">
-                                <frame key="frameInset" minX="156" minY="72" width="40" height="21"/>
+                                <frame key="frameInset" minX="155" minY="12" width="40" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -272,14 +294,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRB-sD-bC9">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5w-U0-cOK">
                                                     <frame key="frameInset" width="75" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qg2-l6-iRN">
+                                                            <frame key="frameInset" width="75" height="75"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="imageView" destination="nRB-sD-bC9" id="ajh-sb-c0g"/>
+                                            <outlet property="cardView" destination="Z5w-U0-cOK" id="Za5-0L-FOD"/>
+                                            <outlet property="imageView" destination="qg2-l6-iRN" id="vg2-Tp-OQr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -289,42 +319,42 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odN-cs-GwX">
-                                <frame key="frameInset" minX="204" minY="71" width="53" height="21"/>
+                                <frame key="frameInset" minX="203" minY="11" width="53" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDk-Lo-H84">
-                                <frame key="frameInset" minX="297" minY="72" width="62" height="21"/>
+                                <frame key="frameInset" minX="296" minY="12" width="62" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEW-Wt-jSl">
-                                <frame key="frameInset" minX="40" minY="100" width="57" height="21"/>
+                                <frame key="frameInset" minX="39" minY="40" width="57" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0K-7m-NHn">
-                                <frame key="frameInset" minX="105" minY="100" width="50" height="21"/>
+                                <frame key="frameInset" minX="104" minY="40" width="50" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxD-5B-19U">
-                                <frame key="frameInset" minX="261" minY="100" width="57" height="21"/>
+                                <frame key="frameInset" minX="260" minY="40" width="57" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndh-KN-dVx">
-                                <frame key="frameInset" minX="326" minY="100" width="33" height="21"/>
+                                <frame key="frameInset" minX="325" minY="40" width="33" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -336,8 +366,24 @@
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                     </view>
-                    <navigationItem key="navigationItem" title="Game" id="V83-o8-k4s"/>
+                    <navigationItem key="navigationItem" title="Game" id="V83-o8-k4s">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Ebm-Wr-7Hm">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yP6-yX-H8d">
+                                <rect key="frame" x="16" y="7" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="&lt;     Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="g7N-sa-5EX" eventType="touchUpInside" id="bn1-EP-1RL"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backBtn" destination="yP6-yX-H8d" id="IM6-Zz-Lhe"/>
                         <outlet property="p1Label" destination="UbF-yf-wBE" id="QZk-zk-Xy0"/>
                         <outlet property="p1Points" destination="p0K-7m-NHn" id="hu4-JL-9Dd"/>
                         <outlet property="p1PointsLabel" destination="GEW-Wt-jSl" id="W15-4K-eCZ"/>
@@ -353,53 +399,96 @@
             </objects>
             <point key="canvasLocation" x="2101.5999999999999" y="-123.68815592203899"/>
         </scene>
-        <!--High score-->
-        <scene sceneID="i1B-Ge-vbi">
+        <!--Highscore-->
+        <scene sceneID="32I-CN-B4N">
             <objects>
-                <viewController id="VBy-FN-4dy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2kz-kC-IIX"/>
-                        <viewControllerLayoutGuide type="bottom" id="75A-1N-iSe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0Ic-zw-x9s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController title="Highscore" id="L3A-uD-XoN" customClass="HighscoreTableViewController" customModule="MultiPlayer_Memory" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UPx-eU-8JC">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Awg-mz-x08">
-                                <frame key="frameInset" minY="20" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DG-9x-Xj9">
-                                <frame key="frameInset" minX="16" minY="72" width="45" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wf-0I-oMy">
-                                <frame key="frameInset" minX="303" minY="72" width="56" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="High score" id="fVF-Td-9UB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uAJ-AZ-wMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highscoreCell" id="zRS-wL-LQJ" customClass="HighscoreTableViewCell" customModule="MultiPlayer_Memory" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zRS-wL-LQJ" id="p0T-po-ulh">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7Q-V6-gJP">
+                                            <frame key="frameInset" minX="8" minY="11" width="25" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buH-RR-8dl">
+                                            <frame key="frameInset" minX="41" minY="11" width="273" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gT-PW-cjl">
+                                            <frame key="frameInset" minX="322" minY="11" width="45" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="buH-RR-8dl" id="xT0-uu-S2z"/>
+                                    <outlet property="positionLabel" destination="X7Q-V6-gJP" id="ykz-o7-VlO"/>
+                                    <outlet property="scoreLabel" destination="9gT-PW-cjl" id="Eh3-po-BpQ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="L3A-uD-XoN" id="GoY-0U-qbm"/>
+                            <outlet property="delegate" destination="L3A-uD-XoN" id="fPg-PB-2U0"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Highscore" id="Ukn-fl-hY9">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="6MR-fL-CEw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cw8-eN-W1C">
+                                <rect key="frame" x="16" y="7" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="&lt;     Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="L3A-uD-XoN" eventType="touchUpInside" id="eMM-Tq-YR2"/>
+                                    <action selector="back:" destination="g7N-sa-5EX" eventType="touchUpInside" id="uZ4-Ma-jYz"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="back:" destination="L3A-uD-XoN" id="Q2K-28-7re"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backBtn" destination="cw8-eN-W1C" id="1eP-XX-2kg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENb-rm-ije" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424.8" y="1027.736131934033"/>
+            <point key="canvasLocation" x="2079.1999999999998" y="680.5097451274363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wOg-Og-AWe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xt6-ZV-ZIx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0yj-PP-wLj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0yj-PP-wLj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.55890883140000003" blue="0.00037984644719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

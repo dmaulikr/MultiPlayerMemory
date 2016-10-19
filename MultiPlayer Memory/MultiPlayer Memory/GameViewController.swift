@@ -12,6 +12,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var p1view: UIView!
     @IBOutlet weak var p2view: UIView!
     
@@ -25,6 +26,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var turnsLabel: UILabel!
     
+    @IBAction func back(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     var players : Int = 1
     var player1 : Player = Player()
@@ -66,11 +70,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         if let view = p1view {
-            view.backgroundColor = UIColor.orange
+            if(players > 1) {
+                player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
+                view.backgroundColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
+            } else {
+                p1PointsLabel.isHidden = true
+                p1Points.isHidden = true
+                p2Label.isHidden = true
+                p2PointsLabel.isHidden = true
+                p2Points.isHidden = true
+            }
             player1 = Player(id: 1, turn: true, view: p1view, pLabel: p1Label, pointLabel: p1PointsLabel, pointValLabel: p1Points)
-            player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
         }
         
+        backBtn.layer.cornerRadius = 3
+        backBtn.layer.masksToBounds = true
     }
     
     override func viewDidLoad() {
@@ -99,67 +113,64 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     //init bricks
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Brick
-        
         print(brickImages.count)
         // Configure the cell
-        cell.backgroundColor = UIColor.black
         let randomValue = Int(arc4random_uniform(UInt32(cellIdsArray.count)))
         cell.id = cellIdsArray[randomValue]
         cellIdsArray.remove(at: randomValue)
-        
         switch cell.id {
         case 0:
             if brickImages.count > 0 {
-                cell.imageView.image = brickImages[0]
+                cell.frontImage = brickImages[0]
             } else {
                 cell.color = UIColor.blue
             }
             break
         case 1:
             if brickImages.count > 1 {
-                cell.imageView.image = brickImages[1]
+                cell.frontImage = brickImages[1]
             } else {
                 cell.color = UIColor.brown
             }
             break
         case 2:
             if brickImages.count > 2 {
-                cell.imageView.image = brickImages[2]
+                cell.frontImage = brickImages[2]
             } else {
                 cell.color = UIColor.cyan
             }
             break
         case 3:
             if brickImages.count > 3 {
-                cell.imageView.image = brickImages[3]
+                cell.frontImage = brickImages[3]
             } else {
                 cell.color = UIColor.green
             }
             break
         case 4:
             if brickImages.count > 4 {
-                cell.imageView.image = brickImages[4]
+                cell.frontImage = brickImages[4]
             } else {
                 cell.color = UIColor.orange
             }
             break
         case 5:
             if brickImages.count > 5 {
-                cell.imageView.image = brickImages[5]
+                cell.frontImage = brickImages[5]
             } else {
                 cell.color = UIColor.magenta
             }
             break
         case 6:
             if brickImages.count > 6 {
-                cell.imageView.image = brickImages[6]
+                cell.frontImage = brickImages[6]
             } else {
                 cell.color = UIColor.yellow
             }
             break
         case 7:
             if brickImages.count > 7 {
-                cell.imageView.image = brickImages[7]
+                cell.frontImage = brickImages[7]
             } else {
                 cell.color = UIColor.gray
             }
@@ -175,7 +186,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         cell.brickMatchId = cellMatchId
         cellMatchId += 1
-        cell.imageView.isHidden = true
+        cell.imageView.image = cell.backgroundImage
         bricks.append(cell)
         openBricks.append(false)
         
@@ -216,31 +227,56 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         brick.isMatch()
                         openBricks[i] = true
                         openBricks[brick.brickMatchId] = true
-                        if player1.isTurn() {
+                        if(players > 1) {
+                            if player1.isTurn() {
+                                player1.addPoint()
+                            } else if player2.isTurn() {
+                                player2.addPoint()
+                            }
+                        } else {
                             player1.addPoint()
-                        } else if player2.isTurn() {
-                            player2.addPoint()
                         }
                         
-                        var bricksLeft = true
+                        var bricksLeft = false
                         for index in 0...15 {
                             if !openBricks[index] {
-                                bricksLeft = false
+                                bricksLeft = true
                             }
                         }
-                        if bricksLeft {
-                            var winner : String
-                            let alertMessage = "Game is finished"
-                            if player1.points > player2.points {
-                                winner = "Player 1 wins!"
-                            } else if player2.points > player1.points {
-                                winner = "Player 2 wins!"
+                        if !bricksLeft {
+                            if players > 1 {
+                                var winner : String
+                                let alertMessage = "Well done!"
+                                if player1.points > player2.points {
+                                    winner = "Player 1 wins!"
+                                } else if player2.points > player1.points {
+                                    winner = "Player 2 wins!"
+                                } else {
+                                    winner = "It's a draw!"
+                                }
+                                let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (alertAction) in self.navigationController?.popViewController(animated: true)} ))
+                                self.present(alert, animated: true, completion:{})
+                                
                             } else {
-                                winner = "It's a draw!"
+                                var tField: UITextField!
+                                
+                                func configurationTextField(textField: UITextField!)
+                                {
+                                    textField.placeholder = "Enter your name"
+                                    tField = textField
+                                }
+
+                                let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
+                                if(isHighscore(score: turnsVal)) {
+                                    alert.message = "Congratulations, you made a highscore! Type in your name to be remembered!"
+                                    alert.addTextField(configurationHandler: configurationTextField)
+                                }
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alertAction) in
+                                    self.addHighscore(score: self.turnsVal, name: tField.text!)
+                                    self.navigationController?.popViewController(animated: true)}))
+                                self.present(alert, animated: true, completion:{})
                             }
-                            let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil))
-                            self.present(alert, animated: true, completion:{})
                         }
                     }
                     else {
@@ -250,8 +286,12 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         closeBricksIndex.append(brick.brickMatchId)
                         turnsVal += 1
                         turnsLabel.text = "\(turnsVal)"
-                        player1.changeTurn()
-                        player2.changeTurn()
+                        if(players > 1) {
+                            player1.changeTurn()
+                            player2.changeTurn()
+                        } else {
+                            
+                        }
                     }
                 }
                 else {
@@ -281,5 +321,13 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    }
+    
+    private func isHighscore(score : Int) -> Bool{
+        return Highscore.sharedInstance.isHighscore(score: score)
+    }
+    
+    private func addHighscore(score : Int, name : String) {
+        Highscore.sharedInstance.addHighscore(name: name, score: score)
     }
 }

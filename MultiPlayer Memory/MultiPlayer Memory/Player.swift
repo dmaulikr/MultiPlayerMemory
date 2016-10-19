@@ -29,6 +29,9 @@ class Player {
         self.turn = turn
         self.points = 0
         self.pView = view
+        self.pView?.layer.cornerRadius = 5
+        self.pView?.layer.masksToBounds = true
+        
         self.pLabel = pLabel
         self.pointLabel = pointLabel
         self.pointValLabel = pointValLabel
@@ -37,9 +40,9 @@ class Player {
     func changeTurn() {
         turn = !turn
         if turn {
-            pView!.backgroundColor = UIColor.orange
+            UIView.animate(withDuration: 0.5, delay: 1, animations: {self.pView!.backgroundColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)})
         } else {
-            pView!.backgroundColor = UIColor.white
+            UIView.animate(withDuration: 0.5, delay: 1, animations: {self.pView!.backgroundColor = UIColor.white})
         }
     }
     
@@ -51,4 +54,5 @@ class Player {
         points += 1
         pointValLabel!.text = "\(points)"
     }
+    
 }
