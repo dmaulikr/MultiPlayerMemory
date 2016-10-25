@@ -5,11 +5,19 @@
 //  Created by Magnus Huttu on 03/10/16.
 //  Copyright © 2016 Magnus Huttu. All rights reserved.
 //
+// Animation KLAR
+// Highscore
+// Färgtema
+// Bibliotek - bilder
+// Gps
 
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
     
+    @IBOutlet weak var playBtn: UIButton!
+    
+    @IBOutlet weak var highscoreBtn: UIButton!
     
     @IBOutlet weak var clearImages: UIButton!
     let reuseIdentifier = "cell"
@@ -81,10 +89,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        highscoreBtn.layer.cornerRadius = 3
+        highscoreBtn.layer.masksToBounds = true
+        
+        playBtn.layer.cornerRadius = 3
+        playBtn.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "play" {
+            let controller = segue.destination as! GameViewController
+            controller.difficulty = Difficulty.Easy
+            controller.brickImages = memoryBricks
+            if multiplayerToggle.isOn {
+                controller.players = 2
+            }
+        }
     }
     
     //MARK: - Delegates
@@ -102,7 +126,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         memoryBricks.append(chosenImage)
         self.gridLayout.reloadData()
         
-        print(memoryBricks) //prints the array in the consolen for debugging
+        print("DEBUG: \(memoryBricks)") //prints the array in the console for debugging
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -114,9 +138,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // get a reference to our storyboard cell
         let cell = gridLayout.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
         
-        cell.brick.image = self.memoryBricks[indexPath.item]
+        cell.img = self.memoryBricks[indexPath.item]
         print("indexPath: ", indexPath)
-        print(cell)
         return cell
     }
     
@@ -126,4 +149,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
 
 }
-

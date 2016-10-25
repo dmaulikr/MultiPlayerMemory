@@ -2,14 +2,18 @@
 //  MyCollectionViewCell.swift
 //  MultiPlayer Memory
 //
-//  Created by Fredrik Holmdahl on 2016-10-14.
+//  Created by Magnus Huttu on 2016-10-17.
 //  Copyright © 2016 Magnus Huttu. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
 class MyCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var brick: UIImageView!
-
+    @IBOutlet weak var image: UIImageView!
+    var img : UIImage? {
+        didSet {
+            image.image = img
+        }
+    }
 }
