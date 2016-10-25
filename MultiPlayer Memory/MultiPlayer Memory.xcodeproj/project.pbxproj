@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F1FA26C1DA2A18800072104 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1FA26B1DA2A18800072104 /* SettingsViewController.swift */; };
+		1F5B9F971DB1170500B26FBB /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B9F961DB1170500B26FBB /* MyCollectionViewCell.swift */; };
 		F98EDD101DA2630A00313A6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */; };
 		F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98EDD111DA2630A00313A6F /* ViewController.swift */; };
 		F98EDD151DA2630A00313A6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98EDD131DA2630A00313A6F /* Main.storyboard */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F1FA26B1DA2A18800072104 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1F5B9F961DB1170500B26FBB /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F98EDD0C1DA2630A00313A6F /* MultiPlayer Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MultiPlayer Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F98EDD111DA2630A00313A6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 				F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */,
 				F98EDD111DA2630A00313A6F /* ViewController.swift */,
 				F98EDD131DA2630A00313A6F /* Main.storyboard */,
-				1F1FA26B1DA2A18800072104 /* SettingsViewController.swift */,
+				1F5B9F961DB1170500B26FBB /* MyCollectionViewCell.swift */,
 				F98EDD161DA2630A00313A6F /* Assets.xcassets */,
 				F98EDD181DA2630A00313A6F /* LaunchScreen.storyboard */,
 				F98EDD1B1DA2630A00313A6F /* Info.plist */,
@@ -99,6 +99,7 @@
 				TargetAttributes = {
 					F98EDD0B1DA2630A00313A6F = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 7L687S44VJ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -139,9 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5B9F971DB1170500B26FBB /* MyCollectionViewCell.swift in Sources */,
 				F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */,
 				F98EDD101DA2630A00313A6F /* AppDelegate.swift in Sources */,
-				1F1FA26C1DA2A18800072104 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,9 +189,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7L687S44VJ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -237,9 +240,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7L687S44VJ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
