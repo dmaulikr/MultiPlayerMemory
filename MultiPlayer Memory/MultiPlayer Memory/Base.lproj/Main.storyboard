@@ -531,6 +531,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="back:" destination="L3A-uD-XoN" eventType="touchUpInside" id="7AD-Ca-xg4"/>
                                     <action selector="back:" destination="g7N-sa-5EX" eventType="touchUpInside" id="uZ4-Ma-jYz"/>
                                 </connections>
                             </button>
@@ -553,7 +554,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xt6-ZV-ZIx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0yj-PP-wLj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0yj-PP-wLj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.99834996461868286" green="0.58063727274103638" blue="0.2597731481398915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
