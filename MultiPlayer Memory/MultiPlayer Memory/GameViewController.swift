@@ -180,8 +180,65 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 cell.color = UIColor.gray
             }
             break
+        case 8:
+            if brickImages.count > 8 {
+                cell.frontImage = brickImages[8]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 9:
+            if brickImages.count > 9 {
+                cell.frontImage = brickImages[9]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 10:
+            if brickImages.count > 10 {
+                cell.frontImage = brickImages[10]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 11:
+            if brickImages.count > 11 {
+                cell.frontImage = brickImages[11]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 12:
+            if brickImages.count > 12 {
+                cell.frontImage = brickImages[12]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 13:
+            if brickImages.count > 13 {
+                cell.frontImage = brickImages[13]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 14:
+            if brickImages.count > 14 {
+                cell.frontImage = brickImages[14]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
+        case 15:
+            if brickImages.count > 15 {
+                cell.frontImage = brickImages[15]
+            } else {
+                cell.color = UIColor.gray
+            }
+            break
         default: break
         }
+        
         
         if cellAlg {
             cellAlg = false
