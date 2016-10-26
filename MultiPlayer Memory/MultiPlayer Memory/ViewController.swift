@@ -129,6 +129,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         startMonitoring(gpsLocation: gpsLocation)
         
         multiplayerToggle.onTintColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
+        largeModeToggle.onTintColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
     }
     
     override func didReceiveMemoryWarning() {
