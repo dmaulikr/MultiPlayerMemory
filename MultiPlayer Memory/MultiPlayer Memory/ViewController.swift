@@ -65,7 +65,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         multiplayerToggle = sender
     }
     @IBAction func largeModeToggle(_ sender: UISwitch) {
-        largeModeToggle = sender
+        if (getLMState().isOn){
+            numberOfImages.text = String(memoryBricks.count) + " of 16"
+        }else if (!getLMState().isOn){
+            numberOfImages.text = String(memoryBricks.count) + " of 8"
+        }
     }
     /* Get:er for multiplayerToggle */
     func getMPState() -> UISwitch {
@@ -197,7 +201,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated:true, completion: nil)
         
         memoryBricks.append(chosenImage)
-        numberOfImages.text = String(memoryBricks.count) + " selected"
+        if (getLMState().isOn){
+            numberOfImages.text = String(memoryBricks.count) + " of 16"
+        }else if (!getLMState().isOn){
+            numberOfImages.text = String(memoryBricks.count) + " of 8"
+        }
+        
         
         self.gridLayout.reloadData()
         
