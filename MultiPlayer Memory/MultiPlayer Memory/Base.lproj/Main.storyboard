@@ -75,7 +75,7 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-kd-dPc">
                                 <rect key="frame" x="310" y="129" width="51" height="31"/>
-                                <color key="onTintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="onTintColor" red="0.20603126290000001" green="0.5658539534" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="largeModeToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="fPJ-Er-tut"/>
                                 </connections>
@@ -125,7 +125,7 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TPE-W9-rUR">
                                 <rect key="frame" x="310" y="66" width="51" height="31"/>
-                                <color key="onTintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="onTintColor" red="0.20603126290000001" green="0.5658539534" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="multiplayerToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="qPq-3M-sJI"/>
                                 </connections>
@@ -166,7 +166,9 @@
                             </collectionView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cai-WD-1Qe">
                                 <rect key="frame" x="269" y="327" width="90" height="30"/>
-                                <state key="normal" title="Clear images"/>
+                                <state key="normal" title="Clear images">
+                                    <color key="titleColor" red="0.20603126287460327" green="0.56585395336151123" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="clearImages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5x4-zo-WK5"/>
                                 </connections>
