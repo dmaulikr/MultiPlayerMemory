@@ -75,8 +75,8 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
                 view.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)
             } else {
-                p1PointsLabel.isHidden = true
-                p1Points.isHidden = true
+                p1PointsLabel.isHidden = false
+                p1Points.isHidden = false
                 p2Label.isHidden = true
                 p2PointsLabel.isHidden = true
                 p2Points.isHidden = true
@@ -298,7 +298,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 
                                 func configurationTextField(textField: UITextField!)
                                 {
-                                    textField.text = "Name"
+                                    textField.text = "Player"
                                     tField = textField
                                 }
 

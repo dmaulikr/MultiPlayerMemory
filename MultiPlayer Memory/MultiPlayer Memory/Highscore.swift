@@ -30,7 +30,7 @@ class Highscore {
     
     func addHighscore(name: String, score: Int) {
         highscores.append((name, score))
-        highscores = highscores.sorted(by: {$0.1 < $1.1})
+        highscores = highscores.sorted(by: {$1.1 < $0.1})
     }
     
     func getHighscores() -> [(name: String, score: Int)] {
