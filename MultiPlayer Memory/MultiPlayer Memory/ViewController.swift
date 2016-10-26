@@ -186,19 +186,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
             else{
-                let alertVC = UIAlertController(
-                    title: "Not yet",
-                    message: "You have the wrong number of photos selected",
-                    preferredStyle: .alert)
-                let okAction = UIAlertAction(
-                    title: "OK",
-                    style:.default,
-                    handler: nil)
-                alertVC.addAction(okAction)
-                present(
-                    alertVC,
-                    animated: true,
-                    completion: nil)
+                let imgLeftLarge = 16 - memoryBricks.count
+                let imgLeft = 8 - memoryBricks.count
+                if(getLMState().isOn){
+                    let alertVC = UIAlertController(
+                        title: "Not yet",
+                        message: "You need " + String(imgLeftLarge) + " more photos",
+                        preferredStyle: .alert)
+                    let okAction = UIAlertAction(
+                        title: "OK",
+                        style:.default,
+                        handler: nil)
+                    alertVC.addAction(okAction)
+                    present(
+                        alertVC,
+                        animated: true,
+                        completion: nil)
+                }else{
+                    let alertVC = UIAlertController(
+                        title: "Not yet",
+                        message: "You need " + String(imgLeft) + " more photos",
+                        preferredStyle: .alert)
+                    let okAction = UIAlertAction(
+                        title: "OK",
+                        style:.default,
+                        handler: nil)
+                    alertVC.addAction(okAction)
+                    present(
+                        alertVC,
+                        animated: true,
+                        completion: nil)
+                }
             }
         }
     }
