@@ -200,12 +200,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         let delay = 1
         let animationDuration = 0.5
         
-        // Fade in the view
         UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             view.alpha = 1
         }) { (Bool) -> Void in
-            
-            // After the animation completes, fade out the view after a delay
             
             UIView.animate(withDuration: animationDuration, delay: TimeInterval(delay), options: .curveEaseInOut, animations: { () -> Void in
                 view.alpha = 0
@@ -260,6 +257,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         }
                         else {
                             player1.addPoint()
+                            fadeViewInThenOut(view: pointMsg)
                         }
                         
                         var bricksLeft = false
@@ -273,28 +271,40 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 var winner : String
                                 let alertMessage = "Well done!"
                                 if player1.points > player2.points {
-                                    winner = "Player 1 wins!"
+                                    winner = "Player 1 wins! Enter your name to be remembered!"
                                 } else if player2.points > player1.points {
-                                    winner = "Player 2 wins!"
+                                    winner = "Player 2 wins! Enter your name to be remembered!"
                                 } else {
-                                    winner = "It's a draw!"
+                                    winner = "It's a draw! Enter a combined name to be remembered!"
                                 }
                                 let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (alertAction) in self.navigationController?.popViewController(animated: true)} ))
+
+                                alert.addTextField { (textField) in
+                                    textField.text = "Player"
+                                }
+                                
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                    let textField = alert.textFields![0]
+                                    self.addHighscore(score: self.turnsVal, name: textField.text!)
+                                    self.navigationController?.popViewController(animated: true)
+                                
+                                }))
+                            
                                 self.present(alert, animated: true, completion:{})
                                 
-                            } else {
+                            }
+                             else {
                                 var tField: UITextField!
                                 
                                 func configurationTextField(textField: UITextField!)
                                 {
-                                    textField.placeholder = "Enter your name"
+                                    textField.text = "Name"
                                     tField = textField
                                 }
 
-                                let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
+                                let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the high score list.", preferredStyle: UIAlertControllerStyle.alert)
                                 if(isHighscore(score: turnsVal)) {
-                                    alert.message = "Congratulations, you made a highscore! Type in your name to be remembered!"
+                                    alert.message = "Congratulations, you made a high score! Enter your name to be remembered!"
                                     alert.addTextField(configurationHandler: configurationTextField)
                                 }
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alertAction) in
