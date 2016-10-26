@@ -12,14 +12,16 @@
 // Gps
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var playBtn: UIButton!
 
     @IBOutlet weak var numberOfImages: UILabel!
     @IBOutlet weak var highscoreBtn: UIButton!
     
+    @IBOutlet weak var gpsImg: UIImageView!
     @IBOutlet weak var clearImages: UIButton!
     let reuseIdentifier = "cell"
     var memoryBricks: [UIImage] = []
@@ -29,6 +31,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var multiplayerToggle: UISwitch!
     @IBOutlet weak var largeModeToggle: UISwitch!
     @IBOutlet weak var gridLayout: UICollectionView!
+    
+    //gps
+    let locationManager = CLLocationManager()
+    let gpsLocation = GpsLocation.sharedInstance
     
     @IBAction func clearImages(_ sender: UIButton) {
         
@@ -117,6 +123,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         numberOfImages.isHidden = true
         playBtn.layer.cornerRadius = 3
         playBtn.layer.masksToBounds = true
+        
+        
+        //Gps
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        
+        gpsLocation.gpsImage = gpsImg
+        startMonitoring(gpsLocation: gpsLocation)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -206,5 +222,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return self.memoryBricks.count
     }
     
-
+    func startMonitoring(gpsLocation: GpsLocation) {
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            print("not able to monitor")
+        }
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            print("not authorized")
+            
+        }
+        let region = self.region(withGpsLocation: gpsLocation)
+        locationManager.startMonitoring(for: region)
+    }
+    
+    func region(withGpsLocation gpsLocation: GpsLocation) -> CLCircularRegion {
+        
+        let region = CLCircularRegion(center: gpsLocation.coordinate, radius: gpsLocation.radius, identifier: gpsLocation.identifier)
+        
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        return region
+    }
+    
+    func stopMonitoring(gpsLocation: GpsLocation) {
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion, circularRegion.identifier == gpsLocation.identifier else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
+    
+    
+    
 }

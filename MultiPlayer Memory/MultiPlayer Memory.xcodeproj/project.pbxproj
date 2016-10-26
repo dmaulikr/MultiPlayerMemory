@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1F04FA1C1DC1125600C53492 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F04FA1B1DC1125600C53492 /* AVFoundation.framework */; };
-		1F04FA241DC1147600C53492 /* pling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F04FA231DC1147600C53492 /* pling.mp3 */; };
 		B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D28491DB803ED00DBD0D9 /* Highscore.swift */; };
 		B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */; };
 		B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */; };
+		B78AE83A1DC1376900F12703 /* pling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B78AE8391DC1376900F12703 /* pling.mp3 */; };
 		B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */; };
 		B79DD0F01DB50A9300747339 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0EF1DB50A9300747339 /* Player.swift */; };
+		B7CACDCD1DC1317B00D0E327 /* GpsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */; };
 		F956C1511DA7D4EA00988A0F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F956C1501DA7D4EA00988A0F /* GameViewController.swift */; };
 		F956C1551DA7DD0600988A0F /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F956C1541DA7DD0600988A0F /* Difficulty.swift */; };
 		F956C15B1DAB8C9D00988A0F /* Brick.swift in Sources */ = {isa = PBXBuildFile; fileRef = F956C15A1DAB8C9D00988A0F /* Brick.swift */; };
@@ -27,12 +28,13 @@
 
 /* Begin PBXFileReference section */
 		1F04FA1B1DC1125600C53492 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1F04FA231DC1147600C53492 /* pling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pling.mp3; path = "../../../../../../Library/Mobile Documents/NK37SPV8GQ~cn~winat~EasyVoice/Documents/pling.mp3"; sourceTree = "<group>"; };
 		B71D28491DB803ED00DBD0D9 /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewCell.swift; sourceTree = "<group>"; };
 		B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
+		B78AE8391DC1376900F12703 /* pling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pling.mp3; path = Sounds/pling.mp3; sourceTree = "<group>"; };
 		B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B79DD0EF1DB50A9300747339 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsLocation.swift; sourceTree = "<group>"; };
 		F956C1501DA7D4EA00988A0F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F956C1541DA7DD0600988A0F /* Difficulty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F956C15A1DAB8C9D00988A0F /* Brick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brick.swift; sourceTree = "<group>"; };
@@ -69,7 +71,7 @@
 		1F04FA201DC112FA00C53492 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				1F04FA231DC1147600C53492 /* pling.mp3 */,
+				B78AE8391DC1376900F12703 /* pling.mp3 */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -99,6 +101,7 @@
 				F98EDD111DA2630A00313A6F /* ViewController.swift */,
 				B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */,
 				B79DD0EF1DB50A9300747339 /* Player.swift */,
+				B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */,
 				B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */,
 				B71D28491DB803ED00DBD0D9 /* Highscore.swift */,
 				F956C15E1DABB83D00988A0F /* MemoryCollectionView.swift */,
@@ -175,8 +178,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F98EDD1A1DA2630A00313A6F /* LaunchScreen.storyboard in Resources */,
-				1F04FA241DC1147600C53492 /* pling.mp3 in Resources */,
 				F98EDD171DA2630A00313A6F /* Assets.xcassets in Resources */,
+				B78AE83A1DC1376900F12703 /* pling.mp3 in Resources */,
 				F98EDD151DA2630A00313A6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +198,7 @@
 				B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */,
 				B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */,
 				F956C15B1DAB8C9D00988A0F /* Brick.swift in Sources */,
+				B7CACDCD1DC1317B00D0E327 /* GpsLocation.swift in Sources */,
 				B79DD0F01DB50A9300747339 /* Player.swift in Sources */,
 				F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */,
 				F956C1551DA7DD0600988A0F /* Difficulty.swift in Sources */,
