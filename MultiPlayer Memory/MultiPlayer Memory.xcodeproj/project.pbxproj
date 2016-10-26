@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F04FA1C1DC1125600C53492 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F04FA1B1DC1125600C53492 /* AVFoundation.framework */; };
 		B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */; };
 		B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */; };
 		B71D28501DB8200100DBD0D9 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284F1DB8200100DBD0D9 /* Score.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F04FA1B1DC1125600C53492 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewCell.swift; sourceTree = "<group>"; };
 		B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		B71D284F1DB8200100DBD0D9 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
@@ -57,18 +59,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F04FA1C1DC1125600C53492 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F04FA1A1DC1125600C53492 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F04FA1B1DC1125600C53492 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F98EDD031DA2630A00313A6F = {
 			isa = PBXGroup;
 			children = (
 				B71D28551DB831B500DBD0D9 /* loc.gpx */,
 				F98EDD0E1DA2630A00313A6F /* MultiPlayer Memory */,
 				F98EDD0D1DA2630A00313A6F /* Products */,
+				1F04FA1A1DC1125600C53492 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

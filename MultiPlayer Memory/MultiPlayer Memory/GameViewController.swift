@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var pointMsg: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var p1view: UIView!
     @IBOutlet weak var p2view: UIView!
@@ -42,6 +44,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.configureView()
         }
     }
+    var player: AVAudioPlayer?
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "pling", withExtension: "mp3")!
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error as Error {
+            print(error.localizedDescription)
+        }
+    }
     
     @IBAction func backButton(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: {})
@@ -67,16 +84,17 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             else {
                 cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15]
                 //TODO: change size of board
+
             }
         }
         
         if let view = p1view {
             if(players > 1) {
                 player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
-                view.backgroundColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
+                view.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)
             } else {
-                p1PointsLabel.isHidden = true
-                p1Points.isHidden = true
+                p1PointsLabel.isHidden = false
+                p1Points.isHidden = false
                 p2Label.isHidden = true
                 p2PointsLabel.isHidden = true
                 p2Points.isHidden = true
@@ -91,6 +109,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        pointMsg.alpha = 0.0
     }
     
 
@@ -255,6 +274,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
+    func fadeViewInThenOut(view : UIView) {
+        
+        let delay = 1
+        let animationDuration = 0.5
+        
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+            view.alpha = 1
+        }) { (Bool) -> Void in
+            
+            UIView.animate(withDuration: animationDuration, delay: TimeInterval(delay), options: .curveEaseInOut, animations: { () -> Void in
+                view.alpha = 0
+            },completion: nil)
+        }
+    }
+    
     // MARK: UICollectionViewDelegate
     
     
@@ -289,14 +323,23 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         brick.isMatch()
                         openBricks[i] = true
                         openBricks[brick.brickMatchId] = true
+                        let animationDuration = 0.5
                         if(players > 1) {
                             if player1.isTurn() {
                                 player1.addPoint()
-                            } else if player2.isTurn() {
-                                player2.addPoint()
+                                fadeViewInThenOut(view: pointMsg)
+                                playSound()
                             }
-                        } else {
+                            else if player2.isTurn(){
+                                player2.addPoint()
+                                fadeViewInThenOut(view: pointMsg)
+                                playSound()
+                            }
+                        }
+                        else {
                             player1.addPoint()
+                            fadeViewInThenOut(view: pointMsg)
+                            playSound()
                         }
                         
                         var bricksLeft = false
@@ -310,28 +353,42 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 var winner : String
                                 let alertMessage = "Well done!"
                                 if player1.points > player2.points {
-                                    winner = "Player 1 wins!"
+                                    winner = "Player 1 wins! Enter your name to be remembered!"
                                 } else if player2.points > player1.points {
-                                    winner = "Player 2 wins!"
+                                    winner = "Player 2 wins! Enter your name to be remembered!"
                                 } else {
-                                    winner = "It's a draw!"
+                                    winner = "It's a draw! Enter a combined name to be remembered!"
                                 }
                                 let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (alertAction) in self.navigationController?.popViewController(animated: true)} ))
+
+                                alert.addTextField { (textField) in
+                                    textField.text = "Player"
+                                }
+                                
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                    let textField = alert.textFields![0]
+                                    self.addHighscore(score: self.turnsVal, name: textField.text!, difficulty: self.difficulty!)
+                                    self.navigationController?.popViewController(animated: true)
+                                
+                                }))
+                            
                                 self.present(alert, animated: true, completion:{})
                                 
-                            } else {
+                            }
+                             else {
                                 var tField: UITextField!
                                 
                                 func configurationTextField(textField: UITextField!)
                                 {
-                                    textField.placeholder = "Enter your name"
+                                    textField.text = "Player"
                                     tField = textField
                                 }
+
 
                                 let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
                                 if(isHighscore(score: turnsVal, difficulty: self.difficulty!)) {
                                     alert.message = "Congratulations, you made a highscore! Type in your name to be remembered!"
+
                                     alert.addTextField(configurationHandler: configurationTextField)
                                 }
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alertAction) in
