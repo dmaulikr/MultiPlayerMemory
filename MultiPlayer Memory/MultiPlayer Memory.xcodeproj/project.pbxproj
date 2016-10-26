@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D28491DB803ED00DBD0D9 /* Highscore.swift */; };
 		B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */; };
 		B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */; };
+		B71D28501DB8200100DBD0D9 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284F1DB8200100DBD0D9 /* Score.swift */; };
+		B71D28541DB82C2E00DBD0D9 /* GpsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D28531DB82C2E00DBD0D9 /* GpsLocation.swift */; };
+		B71D28561DB831B500DBD0D9 /* loc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B71D28551DB831B500DBD0D9 /* loc.gpx */; };
+		B75D88BC1DBD57B5004039B4 /* SmallHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75D88BB1DBD57B5004039B4 /* SmallHighscore.swift */; };
+		B75D88BE1DBD57D7004039B4 /* BigHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75D88BD1DBD57D7004039B4 /* BigHighscore.swift */; };
+		B75D88C21DBD60E5004039B4 /* HighscoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75D88C11DBD60E5004039B4 /* HighscoreProtocol.swift */; };
 		B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */; };
 		B79DD0F01DB50A9300747339 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0EF1DB50A9300747339 /* Player.swift */; };
 		F956C1511DA7D4EA00988A0F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F956C1501DA7D4EA00988A0F /* GameViewController.swift */; };
@@ -24,9 +29,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B71D28491DB803ED00DBD0D9 /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewCell.swift; sourceTree = "<group>"; };
 		B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
+		B71D284F1DB8200100DBD0D9 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		B71D28531DB82C2E00DBD0D9 /* GpsLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsLocation.swift; sourceTree = "<group>"; };
+		B71D28551DB831B500DBD0D9 /* loc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = loc.gpx; path = "MultiPlayer Memory/Assets.xcassets/loc.gpx"; sourceTree = "<group>"; };
+		B75D88BB1DBD57B5004039B4 /* SmallHighscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallHighscore.swift; sourceTree = "<group>"; };
+		B75D88BD1DBD57D7004039B4 /* BigHighscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigHighscore.swift; sourceTree = "<group>"; };
+		B75D88C11DBD60E5004039B4 /* HighscoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreProtocol.swift; sourceTree = "<group>"; };
 		B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B79DD0EF1DB50A9300747339 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F956C1501DA7D4EA00988A0F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +66,7 @@
 		F98EDD031DA2630A00313A6F = {
 			isa = PBXGroup;
 			children = (
+				B71D28551DB831B500DBD0D9 /* loc.gpx */,
 				F98EDD0E1DA2630A00313A6F /* MultiPlayer Memory */,
 				F98EDD0D1DA2630A00313A6F /* Products */,
 			);
@@ -74,12 +85,16 @@
 			children = (
 				F98EDD0F1DA2630A00313A6F /* AppDelegate.swift */,
 				F98EDD111DA2630A00313A6F /* ViewController.swift */,
+				B75D88C11DBD60E5004039B4 /* HighscoreProtocol.swift */,
 				B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */,
 				B79DD0EF1DB50A9300747339 /* Player.swift */,
 				B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */,
-				B71D28491DB803ED00DBD0D9 /* Highscore.swift */,
+				B71D28531DB82C2E00DBD0D9 /* GpsLocation.swift */,
+				B75D88BD1DBD57D7004039B4 /* BigHighscore.swift */,
+				B71D284F1DB8200100DBD0D9 /* Score.swift */,
 				F956C15E1DABB83D00988A0F /* MemoryCollectionView.swift */,
 				F956C15A1DAB8C9D00988A0F /* Brick.swift */,
+				B75D88BB1DBD57B5004039B4 /* SmallHighscore.swift */,
 				F98EDD131DA2630A00313A6F /* Main.storyboard */,
 				B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */,
 				F98EDD161DA2630A00313A6F /* Assets.xcassets */,
@@ -153,6 +168,7 @@
 			files = (
 				F98EDD1A1DA2630A00313A6F /* LaunchScreen.storyboard in Resources */,
 				F98EDD171DA2630A00313A6F /* Assets.xcassets in Resources */,
+				B71D28561DB831B500DBD0D9 /* loc.gpx in Resources */,
 				F98EDD151DA2630A00313A6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,17 +180,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B75D88BC1DBD57B5004039B4 /* SmallHighscore.swift in Sources */,
 				B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */,
 				F956C1511DA7D4EA00988A0F /* GameViewController.swift in Sources */,
 				F956C15F1DABB83D00988A0F /* MemoryCollectionView.swift in Sources */,
+				B75D88BE1DBD57D7004039B4 /* BigHighscore.swift in Sources */,
 				B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */,
-				B71D284A1DB803ED00DBD0D9 /* Highscore.swift in Sources */,
+				B75D88C21DBD60E5004039B4 /* HighscoreProtocol.swift in Sources */,
 				B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */,
 				F956C15B1DAB8C9D00988A0F /* Brick.swift in Sources */,
 				B79DD0F01DB50A9300747339 /* Player.swift in Sources */,
 				F98EDD121DA2630A00313A6F /* ViewController.swift in Sources */,
 				F956C1551DA7DD0600988A0F /* Difficulty.swift in Sources */,
+				B71D28501DB8200100DBD0D9 /* Score.swift in Sources */,
 				F98EDD101DA2630A00313A6F /* AppDelegate.swift in Sources */,
+				B71D28541DB82C2E00DBD0D9 /* GpsLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,4 +9,11 @@
 
 enum Difficulty : String {
     case Easy, Hard
+
+    static func getDifficulty(diff : String) -> Difficulty{
+        if( diff == "Easy") {
+            return Difficulty.Easy
+        }
+        return Difficulty.Hard
+    }
 }

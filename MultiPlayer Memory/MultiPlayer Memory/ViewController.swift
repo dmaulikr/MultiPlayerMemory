@@ -6,17 +6,21 @@
 //  Copyright © 2016 Magnus Huttu. All rights reserved.
 //
 // Animation KLAR
-// Highscore
-// Färgtema
+// Highscore KLAR
+// Färgtema KLAR-isch
 // Bibliotek - bilder
-// Gps
+// Gps - KLAR
+// För liten play-knapp
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate, CLLocationManagerDelegate {
+    @IBOutlet weak var photoWarnLabel: UILabel!
     
     @IBOutlet weak var playBtn: UIButton!
     
+    @IBOutlet weak var playWarnLabel: UILabel!
     @IBOutlet weak var highscoreBtn: UIButton!
     
     @IBOutlet weak var clearImages: UIButton!
@@ -29,6 +33,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var largeModeToggle: UISwitch!
     @IBOutlet weak var gridLayout: UICollectionView!
     
+    //gps
+    let locationManager = CLLocationManager()
+    let gpsLocation = GpsLocation.sharedInstance
+    
+    @IBOutlet weak var locWarnLabel: UILabel!
+    
     @IBAction func clearImages(_ sender: UIButton) {
         self.memoryBricks.removeAll()
         gridLayout.reloadData()
@@ -38,6 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func largeModeToggle(_ sender: UISwitch) {
         largeModeToggle = sender
+        updateBottomInfo()
     }
     /* Get:er for multiplayerToggle */
     func getMPState() -> UISwitch {
@@ -47,7 +58,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func getLMState() -> UISwitch {
         return largeModeToggle
     }
-
+    
     @IBAction func photoFromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -56,19 +67,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func takePhoto(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.camera
-            picker.cameraCaptureMode = .photo
-            picker.modalPresentationStyle = .fullScreen
-            present(picker,animated: true,completion: nil)
+        if gpsLocation.inside {
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                picker.allowsEditing = false
+                picker.sourceType = UIImagePickerControllerSourceType.camera
+                picker.cameraCaptureMode = .photo
+                picker.modalPresentationStyle = .fullScreen
+                present(picker,animated: true,completion: nil)
+            } else {
+                noCamera()
+            }
         } else {
-            noCamera()
+            let alert = UIAlertController(title: "Alert!", message: "You can only take photos if you're at the world culture museum.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil ))
+            self.present(alert, animated: true, completion:{})
         }
-
+        
     }
     @IBAction func shootPhoto(_ sender: UIBarButtonItem) {
-            }
+    }
     
     func noCamera(){
         let alertVC = UIAlertController(
@@ -94,16 +111,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         playBtn.layer.cornerRadius = 3
         playBtn.layer.masksToBounds = true
+        
+        var enoughImages = 8
+        if largeModeToggle.isOn {
+            enoughImages = 16
+        }
+        
+        if memoryBricks.count < enoughImages {
+            playBtn.isUserInteractionEnabled = false
+            playBtn.backgroundColor = UIColor.gray
+        }
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        gpsLocation.warnLabel = locWarnLabel
+        startMonitoring(gpsLocation: gpsLocation)
+        
+        multiplayerToggle.onTintColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
             let controller = segue.destination as! GameViewController
-            controller.difficulty = Difficulty.Easy
+            if largeModeToggle.isOn {
+                controller.difficulty = Difficulty.Hard
+            } else {
+                controller.difficulty = Difficulty.Easy
+            }
             controller.brickImages = memoryBricks
             if multiplayerToggle.isOn {
                 controller.players = 2
@@ -144,8 +183,53 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        updateBottomInfo()
         return self.memoryBricks.count
+
     }
     
-
+    private func updateBottomInfo() {
+        var amountImages = 8
+        if largeModeToggle.isOn {
+            amountImages = 16
+        }
+        
+        if memoryBricks.count == amountImages {
+            playBtn.isUserInteractionEnabled = true
+            playBtn.backgroundColor = UIColor.black
+        } else {
+            playBtn.isUserInteractionEnabled = false
+            playBtn.backgroundColor = UIColor.gray
+        }
+        playWarnLabel.text = "Select \(amountImages-memoryBricks.count) more pictures to enable play"    }
+    
+    func startMonitoring(gpsLocation: GpsLocation) {
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            print("not able to monitor")
+        }
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            print("not authorized")
+            
+        }
+        let region = self.region(withGpsLocation: gpsLocation)
+        locationManager.startMonitoring(for: region)
+    }
+    
+    func region(withGpsLocation gpsLocation: GpsLocation) -> CLCircularRegion {
+        
+        let region = CLCircularRegion(center: gpsLocation.coordinate, radius: gpsLocation.radius, identifier: gpsLocation.identifier)
+        
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        return region
+    }
+    
+    func stopMonitoring(gpsLocation: GpsLocation) {
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion, circularRegion.identifier == gpsLocation.identifier else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
+    
+    
 }

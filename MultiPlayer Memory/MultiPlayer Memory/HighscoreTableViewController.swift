@@ -19,7 +19,7 @@ class HighscoreTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.backBtn.layer.cornerRadius = 3
         self.backBtn.layer.masksToBounds = true
     }
@@ -37,23 +37,32 @@ class HighscoreTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Highscore.sharedInstance.getHighscores().count
+        if( section == 0 ) {
+            return SmallHighscore.sharedInstance.getHighscores().count
+        } else {
+            return BigHighscore.sharedInstance.getHighscores().count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "highscoreCell", for: indexPath) as! HighscoreTableViewCell
         // Configure the cell...
-        let highscores = Highscore.sharedInstance.getHighscores()
+        var highscores : [Score] = []
+        if indexPath[0] == 0 {
+            highscores = SmallHighscore.sharedInstance.getHighscores()
+        } else {
+            highscores = BigHighscore.sharedInstance.getHighscores()
+        }
         cell.positionLabel.text = String((indexPath.row) + 1) + "."
         let score = highscores[indexPath.row]
         cell.nameLabel.text = score.name
-        cell.scoreLabel.text = String(score.score)
+        cell.scoreLabel.text = "Turns: " + String(score.score)
         
         return cell
     }
@@ -67,17 +76,20 @@ class HighscoreTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            if indexPath[0] == 0 {
+                SmallHighscore.sharedInstance.removeScore(index: indexPath.count)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

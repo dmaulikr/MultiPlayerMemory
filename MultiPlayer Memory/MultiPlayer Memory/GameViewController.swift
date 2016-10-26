@@ -58,13 +58,14 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var turnsVal = 0
     
     func configureView() {
-        cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
         
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
+                cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
                 //TODO: change size of board
             }
             else {
+                cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15]
                 //TODO: change size of board
             }
         }
@@ -106,8 +107,12 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        if difficulty! == Difficulty.Easy {
+            return 16
+        } else {
+            return 32
+        }
         
-        return 16
     }
     
     //init bricks
@@ -268,13 +273,15 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 }
 
                                 let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
-                                if(isHighscore(score: turnsVal)) {
+                                if(isHighscore(score: turnsVal, difficulty: self.difficulty!)) {
                                     alert.message = "Congratulations, you made a highscore! Type in your name to be remembered!"
                                     alert.addTextField(configurationHandler: configurationTextField)
                                 }
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alertAction) in
-                                    self.addHighscore(score: self.turnsVal, name: tField.text!)
-                                    self.navigationController?.popViewController(animated: true)}))
+                                    self.addHighscore(score: self.turnsVal, name: tField.text!, difficulty: self.difficulty!)
+                                    self.navigationController?.popViewController(animated: true)
+                                    SmallHighscore.sharedInstance.saveChanges()
+                                    BigHighscore.sharedInstance.saveChanges()}))
                                 self.present(alert, animated: true, completion:{})
                             }
                         }
@@ -323,11 +330,25 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     }
     
-    private func isHighscore(score : Int) -> Bool{
-        return Highscore.sharedInstance.isHighscore(score: score)
+    private func isHighscore(score : Int, difficulty: Difficulty) -> Bool{
+        switch difficulty {
+        case Difficulty.Easy:
+            return SmallHighscore.sharedInstance.isHighscore(score: score)
+            break
+        case Difficulty.Hard:
+            return BigHighscore.sharedInstance.isHighscore(score: score)
+            break
+        }
     }
     
-    private func addHighscore(score : Int, name : String) {
-        Highscore.sharedInstance.addHighscore(name: name, score: score)
+    private func addHighscore(score : Int, name : String, difficulty : Difficulty) {
+        switch difficulty {
+        case Difficulty.Easy:
+            SmallHighscore.sharedInstance.addHighscore(name: name, score: score)
+            break
+        case Difficulty.Hard:
+            BigHighscore.sharedInstance.addHighscore(name: name, score: score)
+            break
+        }
     }
 }

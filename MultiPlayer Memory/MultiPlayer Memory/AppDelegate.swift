@@ -7,18 +7,38 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         return true
     }
-
+    
+    func handleEnterEvent(forRegion region: CLRegion!) {
+        GpsLocation.sharedInstance.inside = true
+        if let label = GpsLocation.sharedInstance.warnLabel {
+            label.textColor = UIColor.green
+            label.text = "Located at museum"
+        }
+    }
+    
+    func handleExitEvent(forRegion region: CLRegion!) {
+        GpsLocation.sharedInstance.inside = false
+        if let label = GpsLocation.sharedInstance.warnLabel {
+            label.textColor = UIColor.red
+            label.text = "Not located at museum"
+        }
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -42,5 +62,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEnterEvent(forRegion: region)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleExitEvent(forRegion: region)
+        }
+    }
 }
 
