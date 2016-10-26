@@ -31,10 +31,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var gridLayout: UICollectionView!
     
     @IBAction func clearImages(_ sender: UIButton) {
-        self.memoryBricks.removeAll()
-        numberOfImages.text = ""
-        gridLayout.reloadData()
+        
+            
+        
+        
+        let alertVC = UIAlertController(
+            title: "Clear images",
+            message: "Are you sure you want to clear selected images?",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: { action in
+                self.memoryBricks.removeAll();
+                 self.numberOfImages.text = "";
+                 self.gridLayout.reloadData()
+            })
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertVC.addAction(okAction)
+        present(
+            alertVC,
+            animated: true,
+            completion: nil)
+    
+    
     }
+    
+
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
         multiplayerToggle = sender
     }
@@ -105,6 +128,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
+            /* ändra sen */
+            let controller = segue.destination as! GameViewController
+            controller.difficulty = Difficulty.Easy
+            controller.brickImages = memoryBricks
+            if multiplayerToggle.isOn {
+                controller.players = 2
+            }
+            /*
             if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 32 && !largeModeToggle.isOn)){
                 let alertVC = UIAlertController(
                     title: "Memory bricks don't match",
@@ -143,7 +174,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     animated: true,
                     completion: nil)
             }
-        }
+        }*/}
     }
     
     //MARK: - Delegates

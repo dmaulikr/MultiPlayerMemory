@@ -40,7 +40,7 @@ class Player {
     func changeTurn() {
         turn = !turn
         if turn {
-            UIView.animate(withDuration: 0.5, delay: 1, animations: {self.pView!.backgroundColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)})
+            UIView.animate(withDuration: 0.5, delay: 1, animations: {self.pView!.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)})
         } else {
             UIView.animate(withDuration: 0.5, delay: 1, animations: {self.pView!.backgroundColor = UIColor.white})
         }
