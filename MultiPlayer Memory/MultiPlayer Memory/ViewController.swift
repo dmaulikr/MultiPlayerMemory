@@ -83,10 +83,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func photoFromLibrary(_ sender: UIButton) {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        present(picker, animated: true, completion: nil)
+        if ((memoryBricks.count < 8 && !largeModeToggle.isOn) || (memoryBricks.count < 16 && largeModeToggle.isOn)){
+            picker.allowsEditing = false
+            picker.sourceType = .photoLibrary
+            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            present(picker, animated: true, completion: nil)
+        }
     }
     
     @IBAction func takePhoto(_ sender: UIButton) {
@@ -164,7 +166,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
-            if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 16 && largeModeToggle.isOn)){
+            if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 16 &&   largeModeToggle.isOn)){
                 let controller = segue.destination as! GameViewController
                 if largeModeToggle.isOn {
                     controller.difficulty = Difficulty.Hard
@@ -177,37 +179,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
             else{
+                var stringMsg = ""
                 let imgLeftLarge = 16 - memoryBricks.count
                 let imgLeft = 8 - memoryBricks.count
-                if(getLMState().isOn){
-                    let alertVC = UIAlertController(
-                        title: "Not yet",
-                        message: "You need " + String(imgLeftLarge) + " more photos",
-                        preferredStyle: .alert)
-                    let okAction = UIAlertAction(
-                        title: "OK",
-                        style:.default,
-                        handler: nil)
-                    alertVC.addAction(okAction)
-                    present(
-                        alertVC,
-                        animated: true,
-                        completion: nil)
-                }else{
-                    let alertVC = UIAlertController(
-                        title: "Not yet",
-                        message: "You need " + String(imgLeft) + " more photos",
-                        preferredStyle: .alert)
-                    let okAction = UIAlertAction(
-                        title: "OK",
-                        style:.default,
-                        handler: nil)
-                    alertVC.addAction(okAction)
-                    present(
-                        alertVC,
-                        animated: true,
-                        completion: nil)
+                
+                if(imgLeft < 8 && !getLMState().isOn){
+                    if (imgLeft == 1){
+                        stringMsg = "You need " + String(imgLeft) + " more photo"
+                    }else if(imgLeft < 0){
+                        let imgLeftPlus = abs(imgLeft)
+                        stringMsg = "You need " + String(imgLeftPlus) + " less photo"
+                    }else{
+                        stringMsg = "You need " + String(imgLeft) + " more photos"
+                    }
+                }else if (imgLeftLarge < 16 && getLMState().isOn){
+                    if (imgLeftLarge == 1){
+                        stringMsg = "You need " + String(imgLeftLarge) + " more photo"
+                        }else{
+                            stringMsg = "You need " + String(imgLeftLarge) + " more photos"
+                        }
+                }else if(memoryBricks.isEmpty){
+                    stringMsg = "You have no photos added"
                 }
+                
+                    let alertVC = UIAlertController(
+                        title: "Not yet",
+                        message: stringMsg,
+                        preferredStyle: .alert)
+                    let okAction = UIAlertAction(
+                        title: "OK",
+                        style:.default,
+                        handler: nil)
+                    alertVC.addAction(okAction)
+                    present(
+                        alertVC,
+                        animated: true,
+                        completion: nil)
             }
         }
     }
