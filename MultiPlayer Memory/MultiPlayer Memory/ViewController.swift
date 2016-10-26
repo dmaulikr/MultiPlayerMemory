@@ -207,6 +207,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         }else{
                             stringMsg = "You need " + String(imgLeftLarge) + " more photos"
                         }
+                }else if(memoryBricks.isEmpty){
+                    stringMsg = "You have no photos added"
                 }
                 
                     let alertVC = UIAlertController(
