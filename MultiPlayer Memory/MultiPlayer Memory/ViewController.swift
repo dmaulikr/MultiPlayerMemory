@@ -17,7 +17,7 @@ import CoreLocation
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var playBtn: UIButton!
-
+    
     @IBOutlet weak var numberOfImages: UILabel!
     @IBOutlet weak var highscoreBtn: UIButton!
     
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func clearImages(_ sender: UIButton) {
         
-            
+        
         
         
         let alertVC = UIAlertController(
@@ -50,9 +50,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             style:.default,
             handler: { action in
                 self.memoryBricks.removeAll();
-                 self.numberOfImages.text = "";
-                 self.gridLayout.reloadData()
-            })
+                self.numberOfImages.text = "";
+                self.gridLayout.reloadData()
+        })
         alertVC.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         alertVC.addAction(okAction)
         present(
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             animated: true,
             completion: nil)
     }
-
+    
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
         multiplayerToggle = sender
     }
@@ -79,7 +79,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func getLMState() -> UISwitch {
         return largeModeToggle
     }
-
+    
     @IBAction func photoFromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -88,19 +88,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func takePhoto(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.camera
-            picker.cameraCaptureMode = .photo
-            picker.modalPresentationStyle = .fullScreen
-            present(picker,animated: true,completion: nil)
+        if GpsLocation.sharedInstance.inside {
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                picker.allowsEditing = false
+                picker.sourceType = UIImagePickerControllerSourceType.camera
+                picker.cameraCaptureMode = .photo
+                picker.modalPresentationStyle = .fullScreen
+                present(picker,animated: true,completion: nil)
+            } else {
+                noCamera()
+            }
         } else {
-            noCamera()
+            let alertVC = UIAlertController(
+                title: "Not in range",
+                message: "You are not in range of the Museum of World Culture and can therefore not take pictures.",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "OK",
+                style:.default,
+                handler: nil)
+            alertVC.addAction(okAction)
+            present(
+                alertVC,
+                animated: true,
+                completion: nil)
+            
         }
-
+        
     }
     @IBAction func shootPhoto(_ sender: UIBarButtonItem) {
-            }
+    }
     
     func noCamera(){
         let alertVC = UIAlertController(
@@ -138,11 +155,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         startMonitoring(gpsLocation: gpsLocation)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
             if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 16 && !largeModeToggle.isOn)){
