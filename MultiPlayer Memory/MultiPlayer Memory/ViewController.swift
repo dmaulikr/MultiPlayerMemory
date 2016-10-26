@@ -10,7 +10,7 @@
 // Färgtema KLAR-isch
 // Bibliotek - bilder
 // Gps - KLAR
-// För liten play-knapp
+// För liten play-knapp - orkar man fixa tro?
 
 import UIKit
 import CoreLocation
