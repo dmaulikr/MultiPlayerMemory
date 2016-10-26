@@ -72,7 +72,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         if let view = p1view {
             if(players > 1) {
                 player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
-                view.backgroundColor = UIColor(red:0.992, green:0.561, blue:0.145, alpha:1.0)
+                view.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)
             } else {
                 p1PointsLabel.isHidden = true
                 p1Points.isHidden = true
