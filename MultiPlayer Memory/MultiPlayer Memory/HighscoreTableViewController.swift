@@ -53,7 +53,7 @@ class HighscoreTableViewController: UITableViewController {
         cell.positionLabel.text = String((indexPath.row) + 1) + "."
         let score = highscores[indexPath.row]
         cell.nameLabel.text = score.name
-        cell.scoreLabel.text = String(score.score)
+        cell.scoreLabel.text = "Turns: " + String(score.score)
         
         return cell
     }

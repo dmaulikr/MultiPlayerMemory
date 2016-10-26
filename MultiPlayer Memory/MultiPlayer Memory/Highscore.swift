@@ -15,7 +15,7 @@ class Highscore {
     
     private init() {
         highscores = [("Magnus", 3), ("Emma", 2), ("Pekka", 12)]
-        highscores = highscores.sorted(by: {$1.1 < $0.1})
+        highscores = highscores.sorted(by: {$1.1 > $0.1})
     }
     
     func isHighscore(score: Int) -> Bool{
@@ -30,7 +30,7 @@ class Highscore {
     
     func addHighscore(name: String, score: Int) {
         highscores.append((name, score))
-        highscores = highscores.sorted(by: {$1.1 < $0.1})
+        highscores = highscores.sorted(by: {$1.1 > $0.1})
     }
     
     func getHighscores() -> [(name: String, score: Int)] {
