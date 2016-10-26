@@ -16,7 +16,8 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
     
     @IBOutlet weak var playBtn: UIButton!
-    
+
+    @IBOutlet weak var numberOfImages: UILabel!
     @IBOutlet weak var highscoreBtn: UIButton!
     
     @IBOutlet weak var clearImages: UIButton!
@@ -31,6 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func clearImages(_ sender: UIButton) {
         self.memoryBricks.removeAll()
+        numberOfImages.text = ""
         gridLayout.reloadData()
     }
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
@@ -92,6 +94,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         highscoreBtn.layer.cornerRadius = 3
         highscoreBtn.layer.masksToBounds = true
         
+        numberOfImages.isHidden = true
         playBtn.layer.cornerRadius = 3
         playBtn.layer.masksToBounds = true
     }
@@ -102,11 +105,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
-            let controller = segue.destination as! GameViewController
-            controller.difficulty = Difficulty.Easy
-            controller.brickImages = memoryBricks
-            if multiplayerToggle.isOn {
-                controller.players = 2
+            if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 32 && !largeModeToggle.isOn)){
+                let alertVC = UIAlertController(
+                    title: "Memory bricks don't match",
+                    message: "Sorry, the amount of photos does not match the selected mode",
+                    preferredStyle: .alert)
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style:.default,
+                    handler: nil)
+                alertVC.addAction(okAction)
+                present(
+                    alertVC,
+                    animated: true,
+                    completion: nil)
+            }
+            else if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 32 && largeModeToggle.isOn)){
+                let controller = segue.destination as! GameViewController
+                controller.difficulty = Difficulty.Easy
+                controller.brickImages = memoryBricks
+                if multiplayerToggle.isOn {
+                    controller.players = 2
+                }
+            }
+            else{
+                let alertVC = UIAlertController(
+                    title: "Not yet",
+                    message: "You have the wrong number of photos selected",
+                    preferredStyle: .alert)
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style:.default,
+                    handler: nil)
+                alertVC.addAction(okAction)
+                present(
+                    alertVC,
+                    animated: true,
+                    completion: nil)
             }
         }
     }
@@ -119,11 +154,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //myImageView.contentMode = .scaleAspectFit
         //myImageView.image = chosenImage
         
+        
+        numberOfImages.isHidden = false
         selectedPhotos.isHidden = false
         clearImages.isHidden = false
         dismiss(animated:true, completion: nil)
         
         memoryBricks.append(chosenImage)
+        numberOfImages.text = String(memoryBricks.count) + " selected"
+        
         self.gridLayout.reloadData()
         
         print("DEBUG: \(memoryBricks)") //prints the array in the console for debugging
