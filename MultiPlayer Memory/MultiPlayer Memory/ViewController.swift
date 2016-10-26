@@ -53,10 +53,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             alertVC,
             animated: true,
             completion: nil)
-    
-    
     }
-    
 
     @IBAction func multiplayerToggle(_ sender: UISwitch) {
         multiplayerToggle = sender
@@ -128,14 +125,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
-            /* ändra sen */
-            let controller = segue.destination as! GameViewController
-            controller.difficulty = Difficulty.Easy
-            controller.brickImages = memoryBricks
-            if multiplayerToggle.isOn {
-                controller.players = 2
-            }
-            /*
             if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 32 && !largeModeToggle.isOn)){
                 let alertVC = UIAlertController(
                     title: "Memory bricks don't match",
@@ -174,7 +163,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     animated: true,
                     completion: nil)
             }
-        }*/}
+        }
     }
     
     //MARK: - Delegates
