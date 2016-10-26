@@ -12,7 +12,7 @@
 		B71D284C1DB8088600DBD0D9 /* HighscoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */; };
 		B71D284E1DB80B3800DBD0D9 /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */; };
 		B78AE83A1DC1376900F12703 /* pling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B78AE8391DC1376900F12703 /* pling.mp3 */; };
-		B78AE83C1DC1454600F12703 /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B78AE83B1DC1454600F12703 /* TestLocations.gpx */; };
+		B78AE83E1DC149AC00F12703 /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B78AE83D1DC149AC00F12703 /* TestLocations.gpx */; };
 		B79DD0EE1DB4FD0B00747339 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */; };
 		B79DD0F01DB50A9300747339 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DD0EF1DB50A9300747339 /* Player.swift */; };
 		B7CACDCD1DC1317B00D0E327 /* GpsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */; };
@@ -33,7 +33,7 @@
 		B71D284B1DB8088600DBD0D9 /* HighscoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewCell.swift; sourceTree = "<group>"; };
 		B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		B78AE8391DC1376900F12703 /* pling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pling.mp3; path = Sounds/pling.mp3; sourceTree = "<group>"; };
-		B78AE83B1DC1454600F12703 /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = TestLocations.gpx; path = "../../../Downloads/Geotify-Starter/Geotify/TestLocations.gpx"; sourceTree = "<group>"; };
+		B78AE83D1DC149AC00F12703 /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
 		B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B79DD0EF1DB50A9300747339 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsLocation.swift; sourceTree = "<group>"; };
@@ -81,7 +81,6 @@
 		F98EDD031DA2630A00313A6F = {
 			isa = PBXGroup;
 			children = (
-				B78AE83B1DC1454600F12703 /* TestLocations.gpx */,
 				F98EDD0E1DA2630A00313A6F /* MultiPlayer Memory */,
 				F98EDD0D1DA2630A00313A6F /* Products */,
 				1F04FA1A1DC1125600C53492 /* Frameworks */,
@@ -105,6 +104,7 @@
 				B79DD0ED1DB4FD0B00747339 /* MyCollectionViewCell.swift */,
 				B79DD0EF1DB50A9300747339 /* Player.swift */,
 				B7CACDCC1DC1317B00D0E327 /* GpsLocation.swift */,
+				B78AE83D1DC149AC00F12703 /* TestLocations.gpx */,
 				B71D284D1DB80B3800DBD0D9 /* HighscoreTableViewController.swift */,
 				B71D28491DB803ED00DBD0D9 /* Highscore.swift */,
 				F956C15E1DABB83D00988A0F /* MemoryCollectionView.swift */,
@@ -183,7 +183,7 @@
 				F98EDD1A1DA2630A00313A6F /* LaunchScreen.storyboard in Resources */,
 				F98EDD171DA2630A00313A6F /* Assets.xcassets in Resources */,
 				B78AE83A1DC1376900F12703 /* pling.mp3 in Resources */,
-				B78AE83C1DC1454600F12703 /* TestLocations.gpx in Resources */,
+				B78AE83E1DC149AC00F12703 /* TestLocations.gpx in Resources */,
 				F98EDD151DA2630A00313A6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
