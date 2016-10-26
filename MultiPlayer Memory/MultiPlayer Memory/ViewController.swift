@@ -125,7 +125,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
-            if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 32 && !largeModeToggle.isOn)){
+            if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 16 && !largeModeToggle.isOn)){
                 let alertVC = UIAlertController(
                     title: "Memory bricks don't match",
                     message: "Sorry, the amount of photos does not match the selected mode",
@@ -140,7 +140,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     animated: true,
                     completion: nil)
             }
-            else if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 32 && largeModeToggle.isOn)){
+            else if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 16 && largeModeToggle.isOn)){
                 let controller = segue.destination as! GameViewController
                 controller.difficulty = Difficulty.Easy
                 controller.brickImages = memoryBricks

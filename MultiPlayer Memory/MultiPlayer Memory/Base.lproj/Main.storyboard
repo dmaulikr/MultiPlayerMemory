@@ -98,8 +98,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Changes the board from 8 to 32 bricks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-hl-hC5">
-                                <rect key="frame" x="16" y="143.5" width="235" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requires 16 photos, instead of 8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-hl-hC5">
+                                <rect key="frame" x="16" y="143.5" width="196" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -406,6 +406,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHi-Tx-Glh">
+                                <rect key="frame" x="109" y="30" width="158" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
@@ -472,6 +479,7 @@
                         <outlet property="p2Points" destination="ndh-KN-dVx" id="1Wo-VI-CAM"/>
                         <outlet property="p2PointsLabel" destination="bxD-5B-19U" id="rpt-My-2FK"/>
                         <outlet property="p2view" destination="OTN-fo-Q9i" id="Tmj-Tz-HIC"/>
+                        <outlet property="pointMsg" destination="zHi-Tx-Glh" id="9RB-fF-YXa"/>
                         <outlet property="turnsLabel" destination="odN-cs-GwX" id="vGW-7C-Hva"/>
                     </connections>
                 </viewController>
@@ -531,7 +539,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Highscore" id="Ukn-fl-hY9">
+                    <navigationItem key="navigationItem" title="High score" id="Ukn-fl-hY9">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="6MR-fL-CEw">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cw8-eN-W1C">
                                 <rect key="frame" x="16" y="7" width="90" height="30"/>

@@ -12,6 +12,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var pointMsg: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var p1view: UIView!
     @IBOutlet weak var p2view: UIView!
@@ -62,10 +63,10 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
-                //TODO: change size of board
+                //TODO: change size of board, 8 or 16 unique pictures
             }
             else {
-                //TODO: change size of board
+                //TODO: change size of board, 8 or 16 unique pictures
             }
         }
         
@@ -90,6 +91,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        pointMsg.alpha = 0.0
     }
     
 
@@ -193,6 +195,24 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
+    func fadeViewInThenOut(view : UIView) {
+        
+        let delay = 1
+        let animationDuration = 0.5
+        
+        // Fade in the view
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+            view.alpha = 1
+        }) { (Bool) -> Void in
+            
+            // After the animation completes, fade out the view after a delay
+            
+            UIView.animate(withDuration: animationDuration, delay: TimeInterval(delay), options: .curveEaseInOut, animations: { () -> Void in
+                view.alpha = 0
+            },completion: nil)
+        }
+    }
+    
     // MARK: UICollectionViewDelegate
     
     
@@ -227,13 +247,18 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         brick.isMatch()
                         openBricks[i] = true
                         openBricks[brick.brickMatchId] = true
+                        let animationDuration = 0.5
                         if(players > 1) {
                             if player1.isTurn() {
                                 player1.addPoint()
-                            } else if player2.isTurn() {
-                                player2.addPoint()
+                                fadeViewInThenOut(view: pointMsg)
                             }
-                        } else {
+                            else if player2.isTurn(){
+                                player2.addPoint()
+                                fadeViewInThenOut(view: pointMsg)
+                            }
+                        }
+                        else {
                             player1.addPoint()
                         }
                         

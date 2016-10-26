@@ -17,6 +17,7 @@ class Player {
     var pLabel : UILabel?
     var pointLabel : UILabel?
     var pointValLabel : UILabel?
+    var pointAnim = false
     
     init() {
         id = 1
@@ -53,6 +54,7 @@ class Player {
     func addPoint() {
         points += 1
         pointValLabel!.text = "\(points)"
+
     }
     
 }
