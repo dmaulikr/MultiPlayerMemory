@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -41,6 +42,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var difficulty: Difficulty? {
         didSet{
             self.configureView()
+        }
+    }
+    var player: AVAudioPlayer?
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "pling", withExtension: "mp3")!
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error as Error {
+            print(error.localizedDescription)
         }
     }
     
@@ -249,15 +265,18 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                             if player1.isTurn() {
                                 player1.addPoint()
                                 fadeViewInThenOut(view: pointMsg)
+                                playSound()
                             }
                             else if player2.isTurn(){
                                 player2.addPoint()
                                 fadeViewInThenOut(view: pointMsg)
+                                playSound()
                             }
                         }
                         else {
                             player1.addPoint()
                             fadeViewInThenOut(view: pointMsg)
+                            playSound()
                         }
                         
                         var bricksLeft = false
