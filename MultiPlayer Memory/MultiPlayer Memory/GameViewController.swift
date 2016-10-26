@@ -75,13 +75,14 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var turnsVal = 0
     
     func configureView() {
-        cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
         
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
+                cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
                 //TODO: change size of board, 8 or 16 unique pictures
             }
             else {
+                cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15]
                 //TODO: change size of board, 8 or 16 unique pictures
             }
         }
@@ -434,10 +435,10 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func isHighscore(score : Int) -> Bool{
-        return Highscore.sharedInstance.isHighscore(score: score)
+        return Highscore.sharedInstance.isHighscore(score: score, board: self.difficulty!)
     }
     
     private func addHighscore(score : Int, name : String) {
-        Highscore.sharedInstance.addHighscore(name: name, score: score)
+        Highscore.sharedInstance.addHighscore(name: name, score: score, board: self.difficulty!)
     }
 }

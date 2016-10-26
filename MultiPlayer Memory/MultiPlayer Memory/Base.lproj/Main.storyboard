@@ -509,7 +509,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="High score" id="Ukn-fl-hY9">
+                    <navigationItem key="navigationItem" title="Scores small board" id="Ukn-fl-hY9">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="6MR-fL-CEw">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cw8-eN-W1C">
                                 <rect key="frame" x="16" y="7" width="90" height="30"/>
@@ -527,10 +527,16 @@
                                 <action selector="back:" destination="L3A-uD-XoN" id="Q2K-28-7re"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Small" id="hO5-dm-59D">
+                            <connections>
+                                <action selector="smallHighscores:" destination="L3A-uD-XoN" id="wb1-qe-Rnx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backBtn" destination="cw8-eN-W1C" id="1eP-XX-2kg"/>
+                        <outlet property="navBar" destination="Ukn-fl-hY9" id="dGC-Fl-FNz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENb-rm-ije" userLabel="First Responder" sceneMemberID="firstResponder"/>

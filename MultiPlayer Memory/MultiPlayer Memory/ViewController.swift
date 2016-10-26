@@ -10,6 +10,8 @@
 // Färgtema
 // Bibliotek - bilder
 // Gps
+// Alert på - man ska inte kunna välja fler bilder än brädet tillåter
+//          - 
 
 import UIKit
 import CoreLocation
@@ -162,24 +164,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "play" {
-            if ((memoryBricks.count == 8 && largeModeToggle.isOn) || (memoryBricks.count == 16 && !largeModeToggle.isOn)){
-                let alertVC = UIAlertController(
-                    title: "Memory bricks don't match",
-                    message: "Sorry, the amount of photos does not match the selected mode",
-                    preferredStyle: .alert)
-                let okAction = UIAlertAction(
-                    title: "OK",
-                    style:.default,
-                    handler: nil)
-                alertVC.addAction(okAction)
-                present(
-                    alertVC,
-                    animated: true,
-                    completion: nil)
-            }
-            else if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 16 && largeModeToggle.isOn)){
+            if((memoryBricks.count == 8 && !largeModeToggle.isOn) || (memoryBricks.count == 16 && largeModeToggle.isOn)){
                 let controller = segue.destination as! GameViewController
-                controller.difficulty = Difficulty.Easy
+                if largeModeToggle.isOn {
+                    controller.difficulty = Difficulty.Hard
+                } else {
+                    controller.difficulty = Difficulty.Easy
+                }
                 controller.brickImages = memoryBricks
                 if multiplayerToggle.isOn {
                     controller.players = 2

@@ -8,17 +8,36 @@
 
 import Foundation
 
-class Highscore {
-    static let sharedInstance = Highscore()
+class Highscore : NSKeyedArchiver {
+    static let sharedInstance : Highscore = {
+        let instance = Highscore()
+        
+        if let obj = (NSKeyedUnarchiver.unarchiveObject(withFile: Highscore.SmallArchiveURL.path) as? [Score]) {
+            instance.smallHighscores = obj
+        } else {
+            instance.smallHighscores = []
+        }
+        
+        if let obj = (NSKeyedUnarchiver.unarchiveObject(withFile: Highscore.LargeArchiveURL.path) as? [Score]) {
+            instance.largeHighscores = obj
+        } else {
+            instance.largeHighscores = []
+        }
+        
+        return instance
+    }()
     
-    var highscores:[(name: String, score: Int)]
+    var smallHighscores:[Score] = []
+    var largeHighscores:[Score] = []
     
-    private init() {
-        highscores = [("Magnus", 3), ("Emma", 2), ("Pekka", 12)]
-        highscores = highscores.sorted(by: {$1.1 > $0.1})
-    }
     
-    func isHighscore(score: Int) -> Bool{
+    func isHighscore(score: Int, board: Difficulty) -> Bool{
+        var highscores : [Score] = []
+        if board == Difficulty.Easy {
+            highscores = smallHighscores
+        } else {
+            highscores = largeHighscores
+        }
         if highscores.count < 20 {
             return true
         }
@@ -28,12 +47,50 @@ class Highscore {
         return false
     }
     
-    func addHighscore(name: String, score: Int) {
-        highscores.append((name, score))
-        highscores = highscores.sorted(by: {$1.1 > $0.1})
+    func addHighscore(name: String, score: Int, board: Difficulty) {
+        var highscores : [Score] = []
+        if board == Difficulty.Easy {
+            highscores = smallHighscores
+        } else {
+            highscores = largeHighscores
+        }
+        
+        highscores.append(Score(name: name, score: score, board: board))
+        highscores = highscores.sorted(by: {$1.score > $0.score})
     }
     
-    func getHighscores() -> [(name: String, score: Int)] {
-        return highscores
+    static var DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static let LargeArchiveURL = DocumentsDirectory.appendingPathComponent("largememscores")
+    static let SmallArchiveURL = DocumentsDirectory.appendingPathComponent("smallmemscores")
+    
+    
+    func getHighscores(board: Difficulty) -> [Score] {
+        if board == Difficulty.Easy {
+            return smallHighscores
+        }
+        return largeHighscores
+    }
+    
+    func saveChanges() {
+        
+        let isSuccessfulSmallSave = NSKeyedArchiver.archiveRootObject(smallHighscores, toFile: Highscore.SmallArchiveURL.path)
+        
+        if !isSuccessfulSmallSave {
+            print("Failed to save small scores...")
+        }
+        else {
+            print("Saving small scores...")
+        }
+        
+        let isSuccessfulLargeSave = NSKeyedArchiver.archiveRootObject(largeHighscores, toFile: Highscore.LargeArchiveURL.path)
+        
+        if !isSuccessfulLargeSave {
+            print("Failed to save large scores...")
+        }
+        else {
+            print("Saving large scores...")
+        }
+        
     }
 }

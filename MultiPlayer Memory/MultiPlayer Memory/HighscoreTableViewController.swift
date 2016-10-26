@@ -10,7 +10,10 @@ import UIKit
 
 class HighscoreTableViewController: UITableViewController {
 
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var backBtn: UIButton!
+    
+    var difficulty = Difficulty.Easy
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,17 @@ class HighscoreTableViewController: UITableViewController {
         self.backBtn.layer.cornerRadius = 3
         self.backBtn.layer.masksToBounds = true
     }
+    
+    @IBAction func smallHighscores(_ sender: AnyObject) {
+        if difficulty == Difficulty.Easy {
+            difficulty = Difficulty.Hard
+            navBar.title = "Scores for small board"
+        } else {
+            difficulty = Difficulty.Easy
+            navBar.title = "Scores for large board"
+        }
+    }
+    
     
     @IBAction func back(_ sender: AnyObject) {
         self.navigationController!.popViewController(animated: true)
@@ -42,14 +56,14 @@ class HighscoreTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Highscore.sharedInstance.getHighscores().count
+        return Highscore.sharedInstance.getHighscores(board: difficulty).count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "highscoreCell", for: indexPath) as! HighscoreTableViewCell
         // Configure the cell...
-        let highscores = Highscore.sharedInstance.getHighscores()
+        let highscores = Highscore.sharedInstance.getHighscores(board: difficulty)
         cell.positionLabel.text = String((indexPath.row) + 1) + "."
         let score = highscores[indexPath.row]
         cell.nameLabel.text = score.name
