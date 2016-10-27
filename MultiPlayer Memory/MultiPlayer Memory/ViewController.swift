@@ -188,7 +188,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         stringMsg = "You need " + String(imgLeft) + " more photo"
                     }else if(imgLeft < 0){
                         let imgLeftPlus = abs(imgLeft)
-                        stringMsg = "You need " + String(imgLeftPlus) + " less photo"
+                        if (imgLeftPlus == 1){
+                            stringMsg = "You need " + String(imgLeftPlus) + " less photo"
+                        }else{
+                            stringMsg = "You need " + String(imgLeftPlus) + " less photos"
+                        }
                     }else{
                         stringMsg = "You need " + String(imgLeft) + " more photos"
                     }
