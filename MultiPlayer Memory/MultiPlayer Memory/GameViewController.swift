@@ -78,6 +78,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         print(difficulty!)
         if let diff = self.difficulty {
+            cellIdsArray = []
             if diff == Difficulty.Easy {
                 cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
             }
@@ -137,6 +138,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         print(brickImages.count)
         // Configure the cell
         let randomValue = Int(arc4random_uniform(UInt32(cellIdsArray.count)))
+        print("cellIdsArray: ")
+        print(cellIdsArray)
+        print("random value" + String(randomValue))
         cell.id = cellIdsArray[randomValue]
         cellIdsArray.remove(at: randomValue)
         switch cell.id {
