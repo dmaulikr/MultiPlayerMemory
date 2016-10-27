@@ -66,10 +66,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         multiplayerToggle = sender
     }
     @IBAction func largeModeToggle(_ sender: UISwitch) {
-        if (getLMState().isOn){
-            numberOfImages.text = String(memoryBricks.count) + " of 16"
-        }else if (!getLMState().isOn){
-            numberOfImages.text = String(memoryBricks.count) + " of 8"
+        if (!memoryBricks.isEmpty){
+            if (getLMState().isOn){
+                numberOfImages.text = String(memoryBricks.count) + " of 16"
+            }else if (!getLMState().isOn){
+                numberOfImages.text = String(memoryBricks.count) + " of 8"
+            }
         }
     }
     /* Get:er for multiplayerToggle */
