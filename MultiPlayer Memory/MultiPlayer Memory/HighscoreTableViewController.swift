@@ -27,14 +27,19 @@ class HighscoreTableViewController: UITableViewController {
         self.backBtn.layer.masksToBounds = true
     }
     
+    @IBOutlet weak var hscoreBtn: UIBarButtonItem!
     @IBAction func smallHighscores(_ sender: AnyObject) {
         if difficulty == Difficulty.Easy {
             difficulty = Difficulty.Hard
-            navBar.title = "Scores for small board"
+            navBar.title = "Scores for large board"
+            hscoreBtn.title = "Small"
         } else {
             difficulty = Difficulty.Easy
-            navBar.title = "Scores for large board"
+            navBar.title = "Scores for small board"
+            hscoreBtn.title = "Large"
         }
+        self.viewWillAppear(true)
+        self.tableView.reloadData()
     }
     
     

@@ -442,8 +442,8 @@
                     <connections>
                         <outlet property="backBtn" destination="yP6-yX-H8d" id="IM6-Zz-Lhe"/>
                         <outlet property="p1Label" destination="UbF-yf-wBE" id="QZk-zk-Xy0"/>
-                        <outlet property="p1Points" destination="p0K-7m-NHn" id="hu4-JL-9Dd"/>
-                        <outlet property="p1PointsLabel" destination="GEW-Wt-jSl" id="W15-4K-eCZ"/>
+                        <outlet property="p1Points" destination="zHi-Tx-Glh" id="RTc-VM-zIa"/>
+                        <outlet property="p1PointsLabel" destination="GEW-Wt-jSl" id="6Kz-HI-hTY"/>
                         <outlet property="p1view" destination="o98-LY-zoZ" id="CaU-xz-KaN"/>
                         <outlet property="p2Label" destination="IDk-Lo-H84" id="BGA-q4-OPP"/>
                         <outlet property="p2Points" destination="ndh-KN-dVx" id="1Wo-VI-CAM"/>
@@ -527,7 +527,7 @@
                                 <action selector="back:" destination="L3A-uD-XoN" id="Q2K-28-7re"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Small" id="hO5-dm-59D">
+                        <barButtonItem key="rightBarButtonItem" title="Large" id="hO5-dm-59D">
                             <connections>
                                 <action selector="smallHighscores:" destination="L3A-uD-XoN" id="wb1-qe-Rnx"/>
                             </connections>
@@ -536,6 +536,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backBtn" destination="cw8-eN-W1C" id="1eP-XX-2kg"/>
+                        <outlet property="hscoreBtn" destination="hO5-dm-59D" id="fMD-UI-81n"/>
                         <outlet property="navBar" destination="Ukn-fl-hY9" id="dGC-Fl-FNz"/>
                     </connections>
                 </tableViewController>

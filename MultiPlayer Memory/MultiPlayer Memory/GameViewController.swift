@@ -19,9 +19,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var p2view: UIView!
     
     
+    @IBOutlet weak var p1Points: UILabel!
     @IBOutlet weak var p1PointsLabel: UILabel!
     @IBOutlet weak var p1Label: UILabel!
-    @IBOutlet weak var p1Points: UILabel!
     @IBOutlet weak var p2Points: UILabel!
     @IBOutlet weak var p2PointsLabel: UILabel!
     @IBOutlet weak var p2Label: UILabel!
@@ -79,11 +79,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
                 cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
-                //TODO: change size of board, 8 or 16 unique pictures
             }
             else {
                 cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15]
-                //TODO: change size of board, 8 or 16 unique pictures
             }
         }
         
@@ -92,8 +90,8 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
                 view.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)
             } else {
-                p1PointsLabel.isHidden = false
-                p1Points.isHidden = false
+                p1PointsLabel.isHidden = true
+                p1Points.isHidden = true
                 p2Label.isHidden = true
                 p2PointsLabel.isHidden = true
                 p2Points.isHidden = true
