@@ -76,12 +76,16 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func configureView() {
         
+        print(difficulty!)
         if let diff = self.difficulty {
             if diff == Difficulty.Easy {
                 cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
             }
             else {
-                cellIdsArray = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15]
+                for index in 0...15 {
+                    cellIdsArray.append(index)
+                    cellIdsArray.append(index)
+                }
             }
         }
         
@@ -124,7 +128,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         
-        return 16
+        return cellIdsArray.count
     }
     
     //init bricks
@@ -345,21 +349,15 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 var winner : String
                                 let alertMessage = "Well done!"
                                 if player1.points > player2.points {
-                                    winner = "Player 1 wins! Enter your name to be remembered!"
+                                    winner = "Player 1 wins!"
                                 } else if player2.points > player1.points {
-                                    winner = "Player 2 wins! Enter your name to be remembered!"
+                                    winner = "Player 2 wins!"
                                 } else {
                                     winner = "It's a draw! Enter a combined name to be remembered!"
                                 }
                                 let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
-
-                                alert.addTextField { (textField) in
-                                    textField.text = "Player"
-                                }
                                 
                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                                    let textField = alert.textFields![0]
-                                    self.addHighscore(score: self.turnsVal, name: textField.text!)
                                     self.navigationController?.popViewController(animated: true)
                                 
                                 }))
@@ -376,7 +374,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                     tField = textField
                                 }
 
-                                let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the high score list.", preferredStyle: UIAlertControllerStyle.alert)
+                                let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
                                 if(isHighscore(score: turnsVal)) {
                                     alert.message = "Congratulations, you made a high score! Enter your name to be remembered!"
                                     alert.addTextField(configurationHandler: configurationTextField)
@@ -438,5 +436,6 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     private func addHighscore(score : Int, name : String) {
         Highscore.sharedInstance.addHighscore(name: name, score: score, board: self.difficulty!)
+        Highscore.sharedInstance.saveChanges()
     }
 }

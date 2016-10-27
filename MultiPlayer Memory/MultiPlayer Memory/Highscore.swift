@@ -48,15 +48,15 @@ class Highscore : NSKeyedArchiver {
     }
     
     func addHighscore(name: String, score: Int, board: Difficulty) {
-        var highscores : [Score] = []
         if board == Difficulty.Easy {
-            highscores = smallHighscores
+            smallHighscores.append(Score(name: name, score: score, board: board))
+            smallHighscores = smallHighscores.sorted(by: {$1.score > $0.score})
         } else {
-            highscores = largeHighscores
+            largeHighscores.append(Score(name: name, score: score, board: board))
+            largeHighscores = smallHighscores.sorted(by: {$1.score > $0.score})
         }
         
-        highscores.append(Score(name: name, score: score, board: board))
-        highscores = highscores.sorted(by: {$1.score > $0.score})
+        
     }
     
     static var DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -81,6 +81,7 @@ class Highscore : NSKeyedArchiver {
         }
         else {
             print("Saving small scores...")
+            print(smallHighscores)
         }
         
         let isSuccessfulLargeSave = NSKeyedArchiver.archiveRootObject(largeHighscores, toFile: Highscore.LargeArchiveURL.path)
@@ -90,6 +91,7 @@ class Highscore : NSKeyedArchiver {
         }
         else {
             print("Saving large scores...")
+            print(largeHighscores)
         }
         
     }
