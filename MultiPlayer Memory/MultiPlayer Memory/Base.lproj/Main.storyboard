@@ -151,6 +151,10 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aPF-tG-F8B">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Trashcan" translatesAutoresizingMaskIntoConstraints="NO" id="poh-ZE-kYS">
+                                                    <rect key="frame" x="11" y="29" width="79" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -171,8 +175,8 @@
                                 </connections>
                             </collectionView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cai-WD-1Qe">
-                                <rect key="frame" x="269" y="329" width="90" height="30"/>
-                                <state key="normal" title="Clear images">
+                                <rect key="frame" x="250" y="329" width="109" height="30"/>
+                                <state key="normal" title="Clear all images">
                                     <color key="titleColor" red="0.20603126287460327" green="0.56585395336151123" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -615,6 +619,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Trashcan" width="512" height="512"/>
         <image name="gpsoff" width="318" height="440"/>
     </resources>
 </document>

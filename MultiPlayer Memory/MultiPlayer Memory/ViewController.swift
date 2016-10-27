@@ -40,9 +40,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func clearImages(_ sender: UIButton) {
         
-        
-        
-        
         let alertVC = UIAlertController(
             title: "Clear images",
             message: "Are you sure you want to clear selected images?",
@@ -53,6 +50,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             handler: { action in
                 self.memoryBricks.removeAll();
                 self.numberOfImages.text = "";
+                self.selectedPhotos.isHidden = true
+                self.clearImages.isHidden = true
                 self.gridLayout.reloadData()
         })
         alertVC.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
@@ -141,6 +140,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         picker.delegate = self
         highscoreBtn.layer.cornerRadius = 3
         highscoreBtn.layer.masksToBounds = true
@@ -266,6 +266,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.memoryBricks.count
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        memoryBricks.remove(at: indexPath.row)
+        gridLayout.reloadData()
+        if(memoryBricks.count == 0){
+            numberOfImages.text = ""
+            selectedPhotos.isHidden = true
+            clearImages.isHidden = true
+        }else{
+        if (!largeModeToggle.isOn){
+            self.numberOfImages.text = String(memoryBricks.count) + " of 8";
+        }
+        else{
+            self.numberOfImages.text = String(memoryBricks.count) + " of 16";
+        }
+        }
+        
     }
     
     func startMonitoring(gpsLocation: GpsLocation) {

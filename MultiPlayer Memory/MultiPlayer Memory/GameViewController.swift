@@ -105,7 +105,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureView()
+        self.configureView()        
         pointMsg.alpha = 0.0
     }
     
