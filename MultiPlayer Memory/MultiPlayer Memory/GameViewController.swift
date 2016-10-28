@@ -37,7 +37,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var player2 : Player = Player()
     
     var brickImages : [UIImage] = []
-    
+    var inited : Bool = false
     
     var difficulty: Difficulty? {
         didSet{
@@ -92,6 +92,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         if let view = p1view {
             if(players > 1) {
+                p2view.bounds.size.height = 74
                 player2 = Player(id: 2, turn: false, view: p2view, pLabel: p2Label, pointLabel: p2PointsLabel, pointValLabel: p2Points)
                 view.backgroundColor = UIColor(red:90.0/255, green:200.0/255, blue:250.0/255, alpha:1.0)
             } else {
@@ -101,6 +102,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 p2PointsLabel.isHidden = true
                 p2Points.isHidden = true
             }
+            view.bounds.size.height = 74
             player1 = Player(id: 1, turn: true, view: p1view, pLabel: p1Label, pointLabel: p1PointsLabel, pointValLabel: p1Points)
         }
         
@@ -110,11 +112,11 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureView()        
+        self.configureView()
         pointMsg.alpha = 0.0
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -135,142 +137,146 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     //init bricks
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Brick
-        print(brickImages.count)
-        // Configure the cell
-        let randomValue = Int(arc4random_uniform(UInt32(cellIdsArray.count)))
-        print("cellIdsArray: ")
-        print(cellIdsArray)
-        print("random value" + String(randomValue))
-        cell.id = cellIdsArray[randomValue]
-        cellIdsArray.remove(at: randomValue)
-        switch cell.id {
-        case 0:
-            if brickImages.count > 0 {
-                cell.frontImage = brickImages[0]
-            } else {
-                cell.color = UIColor.blue
+        if !inited {
+            print(brickImages.count)
+            // Configure the cell
+            let randomValue = Int(arc4random_uniform(UInt32(cellIdsArray.count)))
+            print("cellIdsArray: ")
+            print(cellIdsArray)
+            print("random value" + String(randomValue))
+            cell.id = cellIdsArray[randomValue]
+            cellIdsArray.remove(at: randomValue)
+            if cellIdsArray.count < 1 {
+                inited = true
             }
-            break
-        case 1:
-            if brickImages.count > 1 {
-                cell.frontImage = brickImages[1]
-            } else {
-                cell.color = UIColor.brown
+            switch cell.id {
+            case 0:
+                if brickImages.count > 0 {
+                    cell.frontImage = brickImages[0]
+                } else {
+                    cell.color = UIColor.blue
+                }
+                break
+            case 1:
+                if brickImages.count > 1 {
+                    cell.frontImage = brickImages[1]
+                } else {
+                    cell.color = UIColor.brown
+                }
+                break
+            case 2:
+                if brickImages.count > 2 {
+                    cell.frontImage = brickImages[2]
+                } else {
+                    cell.color = UIColor.cyan
+                }
+                break
+            case 3:
+                if brickImages.count > 3 {
+                    cell.frontImage = brickImages[3]
+                } else {
+                    cell.color = UIColor.green
+                }
+                break
+            case 4:
+                if brickImages.count > 4 {
+                    cell.frontImage = brickImages[4]
+                } else {
+                    cell.color = UIColor.orange
+                }
+                break
+            case 5:
+                if brickImages.count > 5 {
+                    cell.frontImage = brickImages[5]
+                } else {
+                    cell.color = UIColor.magenta
+                }
+                break
+            case 6:
+                if brickImages.count > 6 {
+                    cell.frontImage = brickImages[6]
+                } else {
+                    cell.color = UIColor.yellow
+                }
+                break
+            case 7:
+                if brickImages.count > 7 {
+                    cell.frontImage = brickImages[7]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 8:
+                if brickImages.count > 8 {
+                    cell.frontImage = brickImages[8]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 9:
+                if brickImages.count > 9 {
+                    cell.frontImage = brickImages[9]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 10:
+                if brickImages.count > 10 {
+                    cell.frontImage = brickImages[10]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 11:
+                if brickImages.count > 11 {
+                    cell.frontImage = brickImages[11]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 12:
+                if brickImages.count > 12 {
+                    cell.frontImage = brickImages[12]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 13:
+                if brickImages.count > 13 {
+                    cell.frontImage = brickImages[13]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 14:
+                if brickImages.count > 14 {
+                    cell.frontImage = brickImages[14]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            case 15:
+                if brickImages.count > 15 {
+                    cell.frontImage = brickImages[15]
+                } else {
+                    cell.color = UIColor.gray
+                }
+                break
+            default: break
             }
-            break
-        case 2:
-            if brickImages.count > 2 {
-                cell.frontImage = brickImages[2]
+            
+            if cellAlg {
+                cellAlg = false
+                cellIds+=1
             } else {
-                cell.color = UIColor.cyan
+                cellAlg = true
             }
-            break
-        case 3:
-            if brickImages.count > 3 {
-                cell.frontImage = brickImages[3]
-            } else {
-                cell.color = UIColor.green
-            }
-            break
-        case 4:
-            if brickImages.count > 4 {
-                cell.frontImage = brickImages[4]
-            } else {
-                cell.color = UIColor.orange
-            }
-            break
-        case 5:
-            if brickImages.count > 5 {
-                cell.frontImage = brickImages[5]
-            } else {
-                cell.color = UIColor.magenta
-            }
-            break
-        case 6:
-            if brickImages.count > 6 {
-                cell.frontImage = brickImages[6]
-            } else {
-                cell.color = UIColor.yellow
-            }
-            break
-        case 7:
-            if brickImages.count > 7 {
-                cell.frontImage = brickImages[7]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 8:
-            if brickImages.count > 8 {
-                cell.frontImage = brickImages[8]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 9:
-            if brickImages.count > 9 {
-                cell.frontImage = brickImages[9]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 10:
-            if brickImages.count > 10 {
-                cell.frontImage = brickImages[10]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 11:
-            if brickImages.count > 11 {
-                cell.frontImage = brickImages[11]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 12:
-            if brickImages.count > 12 {
-                cell.frontImage = brickImages[12]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 13:
-            if brickImages.count > 13 {
-                cell.frontImage = brickImages[13]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 14:
-            if brickImages.count > 14 {
-                cell.frontImage = brickImages[14]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        case 15:
-            if brickImages.count > 15 {
-                cell.frontImage = brickImages[15]
-            } else {
-                cell.color = UIColor.gray
-            }
-            break
-        default: break
+            cell.brickMatchId = cellMatchId
+            cellMatchId += 1
+            cell.imageView.image = cell.backgroundImage
+            bricks.append(cell)
+            openBricks.append(false)
         }
-        
-        if cellAlg {
-            cellAlg = false
-            cellIds+=1
-        } else {
-            cellAlg = true
-        }
-        cell.brickMatchId = cellMatchId
-        cellMatchId += 1
-        cell.imageView.image = cell.backgroundImage
-        bricks.append(cell)
-        openBricks.append(false)
-        
         return cell
     }
     
@@ -357,19 +363,19 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                 } else if player2.points > player1.points {
                                     winner = "Player 2 wins!"
                                 } else {
-                                    winner = "It's a draw! Enter a combined name to be remembered!"
+                                    winner = "It's a draw!"
                                 }
                                 let alert = UIAlertController(title: alertMessage, message: winner, preferredStyle: UIAlertControllerStyle.alert)
                                 
                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                                     self.navigationController?.popViewController(animated: true)
-                                
+                                    
                                 }))
-                            
+                                
                                 self.present(alert, animated: true, completion:{})
                                 
                             }
-                             else {
+                            else {
                                 var tField: UITextField!
                                 
                                 func configurationTextField(textField: UITextField!)
@@ -377,7 +383,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                                     textField.text = "Player"
                                     tField = textField
                                 }
-
+                                
                                 let alert = UIAlertController(title: "Well done!", message: "Unfortunately, you did not make it to the highscore list.", preferredStyle: UIAlertControllerStyle.alert)
                                 if(isHighscore(score: turnsVal)) {
                                     alert.message = "Congratulations, you made a high score! Enter your name to be remembered!"
