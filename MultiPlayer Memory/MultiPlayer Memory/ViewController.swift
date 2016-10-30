@@ -87,8 +87,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if ((memoryBricks.count < 8 && !largeModeToggle.isOn) || (memoryBricks.count < 16 && largeModeToggle.isOn)){
             picker.allowsEditing = false
             picker.sourceType = .photoLibrary
-            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-            picker.
+            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!            
             present(picker, animated: true, completion: nil)
         }
     }
