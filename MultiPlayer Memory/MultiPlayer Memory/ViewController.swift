@@ -88,6 +88,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             picker.allowsEditing = false
             picker.sourceType = .photoLibrary
             picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            picker.
             present(picker, animated: true, completion: nil)
         }
     }
